@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BusDirect - Seat Management</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS v4 -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="bg-slate-50 font-['Roboto',sans-serif] min-h-screen flex flex-col justify-between">
+    <!-- Header -->
+    <header class="bg-[#7eb1ff] px-6">
+      <div class="max-w-7xl mx-auto flex flex-row justify-between items-center">
+        <a href="/index.html">
+          <img src="img/logo.png" alt="BusDirect Logo" class="w-36 object-contain" />
+        </a>
+        <ul class="flex flex-row justify-center items-center gap-4">
+          <li class="ursor-pointer p-2 rounded-full hover:bg-[#0066FF]/20 transition-colors text-lg font-medium">
+            <a href="/tikets.html">Tickets</a>
+          </li>
+          <li>
+            <button class="cursor-pointer p-2 rounded-full hover:bg-[#0066FF]/20 transition-colors">
+              <svg
+                class="border-2 border-[#0C1E4A] rounded-full h-9 w-9 p-1 text-[#0C1E4A]"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                ting
+                the
+                global
+                n
+                stroke-linejoin="round"
+              >
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-4 md:p-8 grow">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-8 gap-6">
+        <!-- stats -->
+        <div
+          class="bg-[#7eb1ff] p-4 border-2 border-[#DCDEE3] rounded-xl col-span-full flex flex-wrap justify-between items-center gap-4"
+        >
+        <!-- stat 1 total -->
+          <div class="flex items-center gap-3">
+            <div class="bg-white/40 p-4 rounded-xl  border border-slate-100 flex flex-col gap-3">
+            <div class="flex items-center gap-2 text-[#0C1E4A] font-bold text-sm border-b border-slate-100 pb-2.5">
+                Total 
+            </div>
+          </div>
+        </div>
+        <!-- filters -->
+        <div
+          class="bg-[#7eb1ff] p-4 border-2 border-[#DCDEE3] rounded-xl col-span-full flex flex-wrap justify-between items-center gap-4"
+        >
+          <div class="flex items-center gap-3"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#3f5362] px-8 py-6 mt-8">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+        <img src="img/logo.png" alt="BusDirect Logo" class="w-28 object-contain" />
+        <p class="text-sm text-white/80 italic">Plus qu'un trajet, une expérience!</p>
+      </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+  </body>
+</html>
