@@ -41,11 +41,41 @@ L'application offre une interface interactive et responsive pour gérer les 20 p
 
 ```text
 busdirect/
+├── index.html                     page Trajets
+├── cabine.html                    page Cabine d'un trajet
+├── data/
+│   └── trips.json                 20 trajets (lecture seule)
+├── js/
+│   ├── store.js                   données
+│   │   ├── initialiser()              localStorage, sinon fetch de trips.json
+│   │   └── sauvegarder(trips)         enregistre dans le localStorage
+│   │
+│   ├── validators.js              validations
+│   │   ├── REGEX_TELEPHONE
+│   │   └── validerPassager(trip, p)   nom vide ou en double, téléphone invalide ou en double
+│   │
+│   ├── reservations.js            logique (aucun DOM)
+│   │   ├── placesLibres(trip)         capacity - reservations.length
+│   │   ├── estVIP(siege)              sièges 01 à 04
+│   │   ├── prixSiege(prix, siege)     +10 % si VIP
+│   │   ├── recetteTrajet(trip)        reduce
+│   │   ├── reserver(trip, p, siege)
+│   │   ├── modifier(trip, siege, p)
+│   │   ├── annuler(trip, siege)       + 1er en attente obtient le siège
+│   │   ├── inscrireEnAttente(trip, p)
+│   │   └── retirerDeAttente(trip, i)
+│   │
+│   ├── render.js                  affichage
+│   │   ├── renderTrajets(trips)       cartes
+│   │   ├── renderPagination(page, total)
+│   │   ├── renderCabine(trip)         en-tête + 20 sièges
+│   │   ├── renderListeAttente(trip)
+│   │   └── afficherMessage(el, texte) masqué après 3 secondes
+│   │
+│   ├── main-trajets.js            point d'entrée de index.html
+│   │   └── afficher()                 recherche + filtre + page courante
+│   │
+│   └── main-cabine.js             point d'entrée de cabine.html
+│       └── afficherTout()             réaffiche la cabine après chaque action
 │
-├── index.html        # Page principale (Plan de la cabine et formulaires de gestion)
-├── tikets.html       # Page de consultation des tickets réservés
-├── style.css         # Feuille de style personnalisée
-├── script.js         # Logique principale de gestion de la cabine et du DOM (index)
-├── tikets.js         # Logique d'affichage de la page des tickets
-├── logo.png          # Logo officiel de BusDirect
-└── README.md         # Documentation du projet
+└── README.md
