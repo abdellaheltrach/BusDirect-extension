@@ -99,33 +99,37 @@
             </div>
           </div>
         </div>
-        <!-- filters -->
-        <div
-          class="bg-[#7eb1ff] p-4 border-2 border-[#DCDEE3] rounded-xl col-span-full flex flex-wrap justify-between items-center gap-4"
-        >
-          <!-- city serch -->
-          <div class="grid grid-cols-8 gap-3 items-center w-full">
-<div class="bg-white/50 backdrop-blur-sm p-3 rounded-xl border border-white/60 shadow-sm flex items-center gap-3 col-span-1 sm:col-span-5 lg:col-span-6">
-      <label for="ville" class="text-[#0C1E4A] font-bold text-sm whitespace-nowrap">Ville :</label>
-      <input 
-        type="text" 
-        id="ville" 
-        placeholder="Rechercher une ville..." 
-        class="w-full bg-white/70 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800  transition"
-      />
-    </div>
-            <!-- filter -->
-<div class="bg-white/50 backdrop-blur-sm p-3 rounded-xl border border-white/60 shadow-sm flex items-center gap-3 col-span-1 sm:col-span-3 lg:col-span-2">
-      <label for="filter" class="text-[#0C1E4A] font-bold text-sm whitespace-nowrap">Statut :</label>
-      <select 
-        id="filter" 
-        class="w-full bg-white/70 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0C1E4A] transition cursor-pointer"
-      >
-        <option value="tout">Tous les trajets</option>
-        <option value="disponible">Disponible</option>
-        <option value="complete">Complet</option>
-      </select>
-    </div>
+        <!-- filters background -->
+        <div class="bg-[#7eb1ff] p-4 border-2 border-[#DCDEE3] rounded-xl col-span-full">
+          <!-- city search & filter container -->
+          <div class="grid grid-cols-1 sm:grid-cols-8 gap-3 items-center w-full">
+            <!-- Ville search -->
+            <div
+              class="bg-white/50 backdrop-blur-sm p-3 rounded-xl border border-white/60 shadow-sm flex items-center gap-3 sm:col-span-5 lg:col-span-6"
+            >
+              <label for="ville" class="text-[#0C1E4A] font-bold text-sm whitespace-nowrap">Ville :</label>
+              <input
+                type="text"
+                id="ville"
+                placeholder="Rechercher une ville..."
+                class="w-full bg-white/70 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800 transition focus:outline-none focus:ring-2 focus:ring-[#0C1E4A]"
+              />
+            </div>
+
+            <!-- Statut filter -->
+            <div
+              class="bg-white/50 backdrop-blur-sm p-3 rounded-xl border border-white/60 shadow-sm flex items-center gap-3 sm:col-span-3 lg:col-span-2"
+            >
+              <label for="filter" class="text-[#0C1E4A] font-bold text-sm whitespace-nowrap">Statut :</label>
+              <select
+                id="filter"
+                class="w-full bg-white/70 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0C1E4A] transition cursor-pointer"
+              >
+                <option value="tout">Tous les trajets</option>
+                <option value="disponible">Disponible</option>
+                <option value="complete">Complet</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -136,9 +140,58 @@
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
             <!-- traject 1 -->
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">Casa <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right preview-icon"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg> asafi</p>
-                <span>800dh</span>
+              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
+                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
+                  Casa
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  safi
+                </p>
+                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
+                  08:00am
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  11:30am
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Price: <span class="text-2xl">90</span> dh/place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
+                </p>
+                <span
+                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
+                  >Available</span
+                >
               </div>
             </div>
 
@@ -146,45 +199,290 @@
 
             <!-- traject 2 -->
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p>Total Recette:</p>
-                <span>800dh</span>
+              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
+                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
+                  Casa
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  safi
+                </p>
+                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
+                  08:00am
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  11:30am
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Price: <span class="text-2xl">90</span> dh/place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
+                </p>
+                <span
+                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
+                  >Available</span
+                >
               </div>
             </div>
             <!-- traject 2 end -->
 
             <!-- traject 3 -->
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p>Total Recette:</p>
-                <span>800dh</span>
+              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
+                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
+                  Casa
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  safi
+                </p>
+                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
+                  08:00am
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  11:30am
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Price: <span class="text-2xl">90</span> dh/place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
+                </p>
+                <span
+                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
+                  >Available</span
+                >
               </div>
             </div>
             <!-- traject 3 end -->
 
             <!-- traject 4 -->
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p class="">Total Recette:</p>
-                <span>800dh</span>
+              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
+                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
+                  Casa
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  safi
+                </p>
+                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
+                  08:00am
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  11:30am
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Price: <span class="text-2xl">90</span> dh/place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
+                </p>
+                <span
+                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
+                  >Available</span
+                >
               </div>
             </div>
             <!-- traject 4 end -->
 
             <!-- traject 5 -->
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p>Total Recette:</p>
-                <span>800dh</span>
+              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
+                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
+                  Casa
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  safi
+                </p>
+                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
+                  08:00am
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  11:30am
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Price: <span class="text-2xl">90</span> dh/place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
+                </p>
+                <span
+                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
+                  >Available</span
+                >
               </div>
             </div>
             <!-- traject 5 end -->
 
             <!-- traject 6 -->
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p>Total Recette:</p>
-                <span>800dh</span>
+              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
+                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
+                  Casa
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  safi
+                </p>
+                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
+                  08:00am
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-move-right preview-icon"
+                  >
+                    <path d="M18 8L22 12L18 16" />
+                    <path d="M2 12H22" />
+                  </svg>
+                  11:30am
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Price: <span class="text-2xl">90</span> dh/place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
+                </p>
+                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
+                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
+                </p>
+                <span
+                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
+                  >Available</span
+                >
               </div>
             </div>
             <!-- traject 6 end -->
