@@ -61,36 +61,40 @@
           class="bg-[#7eb1ff] p-4 border-2 border-[#DCDEE3] rounded-xl col-span-full flex flex-wrap justify-between items-center gap-4"
         >
           <div class="grid grid-cols-2 w-full lg:grid-cols-4 items-center gap-3">
-            <!-- stat 1 total -->
+            <!-- stat 1 total mony -->
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
               <div class="flex items-center flex-col gap-2 text-[#000000] font-bold text-sm border-slate-100 pb-2.5">
-                <p class="text-lg">800dh</p>
-                <span class="text-[#e5e7eb] font-bold">Total earning this month</span>
+                <span class="text-xs uppercase font-semibold text-[#0C1E4A]/70">Total Recette</span>
+                <p class="text-2xl font-extrabold text-[#0C1E4A]">800 DH</p>
+                <span class="text-xs font-medium text-slate-700">Ce mois-ci</span>
               </div>
             </div>
-            <!-- stat 2 total -->
+            <!-- stat 2 total trajects -->
 
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
               <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p>Total Recette:</p>
-                <span>800dh</span>
+                <span class="text-xs uppercase font-semibold text-[#0C1E4A]/70">Trajets Totaux</span>
+                <p class="text-2xl font-extrabold text-[#0C1E4A]">12</p>
+                <span class="text-xs font-medium text-slate-700">Trajets actifs</span>
               </div>
             </div>
 
-            <!-- stat 3 total -->
+            <!-- stat 3 total passnagers -->
 
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
               <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p>Total Recette:</p>
-                <span>800dh</span>
+                <span class="text-xs uppercase font-semibold text-[#0C1E4A]/70">Passagers</span>
+                <p class="text-2xl font-extrabold text-[#0C1E4A]">145</p>
+                <span class="text-xs font-medium text-slate-700">Du réseau</span>
               </div>
             </div>
-            <!-- stat 2 total -->
+            <!-- stat 2 passangers on waiting list -->
 
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
               <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p>Total Recette:</p>
-                <span>800dh</span>
+                <span class="text-xs uppercase font-semibold text-[#0C1E4A]/70">En Attente</span>
+                <p class="text-2xl font-extrabold text-[#0C1E4A]">8</p>
+                <span class="text-xs font-medium text-slate-700">Liste d'attente</span>
               </div>
             </div>
           </div>
@@ -101,18 +105,27 @@
         >
           <!-- city serch -->
           <div class="grid grid-cols-8 gap-3 items-center w-full">
-            <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-row col-span-6">
-              <label for="ville">ville:</label>
-              <input type="text" id="ville" />
-            </div>
+<div class="bg-white/50 backdrop-blur-sm p-3 rounded-xl border border-white/60 shadow-sm flex items-center gap-3 col-span-1 sm:col-span-5 lg:col-span-6">
+      <label for="ville" class="text-[#0C1E4A] font-bold text-sm whitespace-nowrap">Ville :</label>
+      <input 
+        type="text" 
+        id="ville" 
+        placeholder="Rechercher une ville..." 
+        class="w-full bg-white/70 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800  transition"
+      />
+    </div>
             <!-- filter -->
-            <div class="bg-white/40 min-w-[200px] p-4 rounded-xl border border-slate-100 flex flex-row col-span-2">
-              <label for="filter">filter:</label>
-              <select name="" id="filter">
-                <option value="disponible">disponible</option>
-                <option value="complete">complete</option>
-              </select>
-            </div>
+<div class="bg-white/50 backdrop-blur-sm p-3 rounded-xl border border-white/60 shadow-sm flex items-center gap-3 col-span-1 sm:col-span-3 lg:col-span-2">
+      <label for="filter" class="text-[#0C1E4A] font-bold text-sm whitespace-nowrap">Statut :</label>
+      <select 
+        id="filter" 
+        class="w-full bg-white/70 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0C1E4A] transition cursor-pointer"
+      >
+        <option value="tout">Tous les trajets</option>
+        <option value="disponible">Disponible</option>
+        <option value="complete">Complet</option>
+      </select>
+    </div>
           </div>
         </div>
 
@@ -124,7 +137,7 @@
             <!-- traject 1 -->
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
               <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p>Total Recette:</p>
+                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">Casa <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-right preview-icon"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg> asafi</p>
                 <span>800dh</span>
               </div>
             </div>
@@ -152,7 +165,7 @@
             <!-- traject 4 -->
             <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
               <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p>Total Recette:</p>
+                <p class="">Total Recette:</p>
                 <span>800dh</span>
               </div>
             </div>
@@ -182,26 +195,18 @@
           class="bg-[#7eb1ff] p-4 border-2 border-[#DCDEE3] rounded-xl col-span-full flex flex-wrap justify-between items-center gap-4"
         >
           <div class="flex flex-row justify-center items-center gap-3 w-full">
+            <button class="hidden rounded-[12px] px-4 py-2 bg-[#E7E5E4] ]">&lt;</button>
 
-              <button class="hidden rounded-[12px] px-4 py-2 bg-[#E7E5E4] ]">
-                &lt;
-              </button>
+            <button class="rounded-[12px] px-4 py-2 bg-[#C2410C] text-white">1</button>
 
-              <button class="rounded-[12px] px-4 py-2 bg-[#C2410C] text-white">
-                1
-              </button>
+            <button class="hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black">2</button>
 
-              <button class=" hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black">
-                2
-              </button>
-
-              <button class="font-poppins hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black">
-                3
-              </button>
-              <button class="font-poppins hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black">
-                &gt;
-              </button>
-            
+            <button class="font-poppins hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black">
+              3
+            </button>
+            <button class="font-poppins hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black">
+              &gt;
+            </button>
           </div>
         </div>
       </div>
