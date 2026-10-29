@@ -139,350 +139,458 @@
         >
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
             <!-- traject 1 -->
-            <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
-                  Casa
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  safi
-                </p>
-                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
-                  08:00am
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  11:30am
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Price: <span class="text-2xl">90</span> dh/place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
-                </p>
+            <div
+              class="bg-white/40 backdrop-blur-md p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4"
+            >
+              <!-- Card Header with Route and Status Badge -->
+              <div class="flex justify-between items-start">
+                <div class="flex flex-col gap-1">
+                  <p class="flex items-center gap-2 text-lg font-bold text-[#0C1E4A] tracking-wide">
+                    CASA
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="text-slate-400"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    SAFI
+                  </p>
+                  <p class="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+                    08:00 AM
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    11:30 AM
+                  </p>
+                </div>
                 <span
-                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
-                  >Available</span
+                  class="px-3 py-1 rounded-full bg-[#009966]/10 border border-[#009966]/20 text-[#009966] text-[11px] font-bold uppercase tracking-wider"
                 >
+                  Available
+                </span>
+              </div>
+
+              <hr class="border-slate-100" />
+
+              <!-- Card Details / Stats -->
+              <div class="grid grid-cols-3 gap-2 pt-1">
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Price</span>
+                  <p class="text-xl font-extrabold text-[#0C1E4A]">
+                    90 <span class="text-xs font-medium text-slate-500">DH</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Available</span>
+                  <p class="text-xl font-extrabold text-[#009966]">
+                    20<span class="text-xs font-normal text-slate-400">/20</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Waiting List</span>
+                  <p class="text-xl font-extrabold text-[#FF0000]">20</p>
+                </div>
               </div>
             </div>
-
             <!-- traject 1 end -->
 
+
             <!-- traject 2 -->
-            <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
-                  Casa
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  safi
-                </p>
-                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
-                  08:00am
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  11:30am
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Price: <span class="text-2xl">90</span> dh/place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
-                </p>
+            <div
+              class="bg-white/40 backdrop-blur-md p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4"
+            >
+              <!-- Card Header with Route and Status Badge -->
+              <div class="flex justify-between items-start">
+                <div class="flex flex-col gap-1">
+                  <p class="flex items-center gap-2 text-lg font-bold text-[#0C1E4A] tracking-wide">
+                    CASA
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="text-slate-400"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    SAFI
+                  </p>
+                  <p class="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+                    08:00 AM
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    11:30 AM
+                  </p>
+                </div>
                 <span
-                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
-                  >Available</span
+                  class="px-3 py-1 rounded-full bg-[#009966]/10 border border-[#009966]/20 text-[#009966] text-[11px] font-bold uppercase tracking-wider"
                 >
+                  Available
+                </span>
+              </div>
+
+              <hr class="border-slate-100" />
+
+              <!-- Card Details / Stats -->
+              <div class="grid grid-cols-3 gap-2 pt-1">
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Price</span>
+                  <p class="text-xl font-extrabold text-[#0C1E4A]">
+                    90 <span class="text-xs font-medium text-slate-500">DH</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Available</span>
+                  <p class="text-xl font-extrabold text-[#009966]">
+                    20<span class="text-xs font-normal text-slate-400">/20</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Waiting List</span>
+                  <p class="text-xl font-extrabold text-[#FF0000]">20</p>
+                </div>
               </div>
             </div>
             <!-- traject 2 end -->
 
             <!-- traject 3 -->
-            <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
-                  Casa
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  safi
-                </p>
-                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
-                  08:00am
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  11:30am
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Price: <span class="text-2xl">90</span> dh/place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
-                </p>
+            <div
+              class="bg-white/40 backdrop-blur-md p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4"
+            >
+              <!-- Card Header with Route and Status Badge -->
+              <div class="flex justify-between items-start">
+                <div class="flex flex-col gap-1">
+                  <p class="flex items-center gap-2 text-lg font-bold text-[#0C1E4A] tracking-wide">
+                    CASA
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="text-slate-400"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    SAFI
+                  </p>
+                  <p class="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+                    08:00 AM
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    11:30 AM
+                  </p>
+                </div>
                 <span
-                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
-                  >Available</span
+                  class="px-3 py-1 rounded-full bg-[#009966]/10 border border-[#009966]/20 text-[#009966] text-[11px] font-bold uppercase tracking-wider"
                 >
+                  Available
+                </span>
+              </div>
+
+              <hr class="border-slate-100" />
+
+              <!-- Card Details / Stats -->
+              <div class="grid grid-cols-3 gap-2 pt-1">
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Price</span>
+                  <p class="text-xl font-extrabold text-[#0C1E4A]">
+                    90 <span class="text-xs font-medium text-slate-500">DH</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Available</span>
+                  <p class="text-xl font-extrabold text-[#009966]">
+                    20<span class="text-xs font-normal text-slate-400">/20</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Waiting List</span>
+                  <p class="text-xl font-extrabold text-[#FF0000]">20</p>
+                </div>
               </div>
             </div>
             <!-- traject 3 end -->
 
             <!-- traject 4 -->
-            <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
-                  Casa
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  safi
-                </p>
-                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
-                  08:00am
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  11:30am
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Price: <span class="text-2xl">90</span> dh/place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
-                </p>
+            <div
+              class="bg-white/40 backdrop-blur-md p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4"
+            >
+              <!-- Card Header with Route and Status Badge -->
+              <div class="flex justify-between items-start">
+                <div class="flex flex-col gap-1">
+                  <p class="flex items-center gap-2 text-lg font-bold text-[#0C1E4A] tracking-wide">
+                    CASA
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="text-slate-400"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    SAFI
+                  </p>
+                  <p class="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+                    08:00 AM
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    11:30 AM
+                  </p>
+                </div>
                 <span
-                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
-                  >Available</span
+                  class="px-3 py-1 rounded-full bg-[#009966]/10 border border-[#009966]/20 text-[#009966] text-[11px] font-bold uppercase tracking-wider"
                 >
+                  Available
+                </span>
+              </div>
+
+              <hr class="border-slate-100" />
+
+              <!-- Card Details / Stats -->
+              <div class="grid grid-cols-3 gap-2 pt-1">
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Price</span>
+                  <p class="text-xl font-extrabold text-[#0C1E4A]">
+                    90 <span class="text-xs font-medium text-slate-500">DH</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Available</span>
+                  <p class="text-xl font-extrabold text-[#009966]">
+                    20<span class="text-xs font-normal text-slate-400">/20</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Waiting List</span>
+                  <p class="text-xl font-extrabold text-[#FF0000]">20</p>
+                </div>
               </div>
             </div>
             <!-- traject 4 end -->
 
             <!-- traject 5 -->
-            <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
-                  Casa
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  safi
-                </p>
-                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
-                  08:00am
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  11:30am
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Price: <span class="text-2xl">90</span> dh/place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
-                </p>
+            <div
+              class="bg-white/40 backdrop-blur-md p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4"
+            >
+              <!-- Card Header with Route and Status Badge -->
+              <div class="flex justify-between items-start">
+                <div class="flex flex-col gap-1">
+                  <p class="flex items-center gap-2 text-lg font-bold text-[#0C1E4A] tracking-wide">
+                    CASA
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="text-slate-400"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    SAFI
+                  </p>
+                  <p class="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+                    08:00 AM
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    11:30 AM
+                  </p>
+                </div>
                 <span
-                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
-                  >Available</span
+                  class="px-3 py-1 rounded-full bg-[#009966]/10 border border-[#009966]/20 text-[#009966] text-[11px] font-bold uppercase tracking-wider"
                 >
+                  Available
+                </span>
+              </div>
+
+              <hr class="border-slate-100" />
+
+              <!-- Card Details / Stats -->
+              <div class="grid grid-cols-3 gap-2 pt-1">
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Price</span>
+                  <p class="text-xl font-extrabold text-[#0C1E4A]">
+                    90 <span class="text-xs font-medium text-slate-500">DH</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Available</span>
+                  <p class="text-xl font-extrabold text-[#009966]">
+                    20<span class="text-xs font-normal text-slate-400">/20</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Waiting List</span>
+                  <p class="text-xl font-extrabold text-[#FF0000]">20</p>
+                </div>
               </div>
             </div>
             <!-- traject 5 end -->
 
             <!-- traject 6 -->
-            <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
-              <div class="relative flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
-                <p class="flex flex-row gap-2 items-center text-lg uppercase font-semibold text-[#0C1E4A]">
-                  Casa
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  safi
-                </p>
-                <p class="flex flex-row gap-2 items-center text-xs uppercase font-semibold text-slate-700">
-                  08:00am
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-move-right preview-icon"
-                  >
-                    <path d="M18 8L22 12L18 16" />
-                    <path d="M2 12H22" />
-                  </svg>
-                  11:30am
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Price: <span class="text-2xl">90</span> dh/place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Avaible: <span class="text-2xl text-[#009966]">20</span>/20 place
-                </p>
-                <p class="flex flex-row gap-2 items-baseline text-xs uppercase font-semibold text-slate-700">
-                  Liste d’attente: <span class="text-2xl text-[#FF0000]">20</span>
-                </p>
+            <div
+              class="bg-white/40 backdrop-blur-md p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4"
+            >
+              <!-- Card Header with Route and Status Badge -->
+              <div class="flex justify-between items-start">
+                <div class="flex flex-col gap-1">
+                  <p class="flex items-center gap-2 text-lg font-bold text-[#0C1E4A] tracking-wide">
+                    CASA
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="text-slate-400"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    SAFI
+                  </p>
+                  <p class="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+                    08:00 AM
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M18 8L22 12L18 16" />
+                      <path d="M2 12H22" />
+                    </svg>
+                    11:30 AM
+                  </p>
+                </div>
                 <span
-                  class="absolute top-0 right-0 flex flex-row gap-2 items-baseline border-slate-100 border-2 p-2 rounded-lg bg-[#009966] text-xs uppercase font-semibold text-white"
-                  >Available</span
+                  class="px-3 py-1 rounded-full bg-[#009966]/10 border border-[#009966]/20 text-[#009966] text-[11px] font-bold uppercase tracking-wider"
                 >
+                  Available
+                </span>
+              </div>
+
+              <hr class="border-slate-100" />
+
+              <!-- Card Details / Stats -->
+              <div class="grid grid-cols-3 gap-2 pt-1">
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Price</span>
+                  <p class="text-xl font-extrabold text-[#0C1E4A]">
+                    90 <span class="text-xs font-medium text-slate-500">DH</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Available</span>
+                  <p class="text-xl font-extrabold text-[#009966]">
+                    20<span class="text-xs font-normal text-slate-400">/20</span>
+                  </p>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-[11px] uppercase font-semibold text-slate-400">Waiting List</span>
+                  <p class="text-xl font-extrabold text-[#FF0000]">20</p>
+                </div>
               </div>
             </div>
             <!-- traject 6 end -->
