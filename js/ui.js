@@ -14,6 +14,7 @@ export function renderTrips(modifiedTrips, page, size) {
   }
 
   let tripsContainer = document.getElementById("tripsContainer");
+  tripsContainer.innerHTML = "";
 
   let startIndex = (page - 1) * size;
   let endEndex = startIndex + size;
@@ -76,4 +77,86 @@ export function renderTrips(modifiedTrips, page, size) {
     tripsContainer.appendChild(card);
   });
 
+  rederPagination(modifiedTrips, page, modifiedTrips.length, size)
+}
+
+export function handleFilter(e) {
+  const serchCity = document.getElementById("ville");
+  const statusSelector = document.getElementById("filter");
+
+  const city = serchCity.value.toLocaleLowerCase().trim();
+  const status = statusSelector.value;
+
+  const filtredTrips = trips.filter((trip) => {
+    const matchCity =
+      trip.departure.toLocaleLowerCase().includes(city) || trip.destination.toLocaleLowerCase().includes(city);
+
+    let matchFilter = false;
+
+    if (status === "tout") {
+      matchFilter = true;
+    } else if (status === "disponible") {
+      matchFilter = trip.capacity > trip.reservations.length;
+    } else if (status === "complete") {
+      matchFilter = trip.capacity === trip.reservations.length;
+    }
+
+    return matchCity && matchFilter;
+  });
+
+  renderTrips(filtredTrips, 1, 6);
+}
+
+export function rederPagination(modifiedTrips, courantPage, totalElement, pageSize) {
+  const paginationHTML = document.getElementById("pagination");
+
+  paginationHTML.innerHTML = "";
+
+  let totalPages = Math.ceil(totalElement / pageSize);
+
+  if (totalPages <= 1) {
+    return;
+  }
+
+  // prev button
+  if (courantPage > 1) {
+    const prevBtn = document.createElement("button");
+    prevBtn.innerHTML = "&lt;";
+    prevBtn.className = "hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black font-semibold";
+    prevBtn.addEventListener("click", () => {
+      renderTrips(modifiedTrips, courantPage - 1, pageSize);
+    });
+    paginationHTML.appendChild(prevBtn);
+  }
+
+  //render all pages
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.innerText = i;
+
+    if (i === courantPage) {
+      // Active page visual styling
+      btn.className = "rounded-[12px] px-4 py-2 bg-[#0C1E4A]/40 text-white font-semibold";
+    } else {
+      // Inactive page visual styling
+      btn.className = "hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black";
+    }
+
+    btn.addEventListener("click", () => {
+      renderTrips(modifiedTrips, i, pageSize);
+    });
+
+    paginationHTML.appendChild(btn);
+  }
+
+  // next button
+  if (courantPage < totalPages) {
+    const nextBtn = document.createElement("button");
+    nextBtn.innerHTML = "&gt;";
+    nextBtn.className = "hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black font-semibold";
+    nextBtn.addEventListener("click", () => {
+      renderTrips(modifiedTrips, courantPage + 1, pageSize);
+    });
+    paginationHTML.appendChild(nextBtn);
+  }
 }
