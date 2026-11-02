@@ -19,489 +19,138 @@
   </head>
   <body class="bg-slate-50 font-['Roboto',sans-serif] min-h-screen flex flex-col justify-between">
     <!-- Header -->
-    <header class="bg-[#7eb1ff] px-6 ">
+    <header class="bg-[#7eb1ff] px-6">
       <div class="max-w-7xl mx-auto flex flex-row justify-between items-center">
         <a href="/index.html">
-        <img src="/logo.png" alt="BusDirect Logo" class="w-36 object-contain" />
+          <img src="img/logo.png" alt="BusDirect Logo" class="w-36 object-contain" />
         </a>
         <ul class="flex flex-row justify-center items-center gap-4">
           <li class="ursor-pointer p-2 rounded-full hover:bg-[#0066FF]/20 transition-colors text-lg font-medium">
             <a href="/tikets.html">Tickets</a>
           </li>
           <li>
- <button class="cursor-pointer p-2 rounded-full hover:bg-[#0066FF]/20 transition-colors">
-          <svg
-            class="border-2 border-[#0C1E4A] rounded-full h-9 w-9 p-1 text-[#0C1E4A]"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"ting the global n
-            stroke-linejoin="round"
-          >
-            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-            <circle cx="12" cy="7" r="4" />
-          </svg>
-        </button>
+            <button class="cursor-pointer p-2 rounded-full hover:bg-[#0066FF]/20 transition-colors">
+              <svg
+                class="border-2 border-[#0C1E4A] rounded-full h-9 w-9 p-1 text-[#0C1E4A]"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                ting
+                the
+                global
+                n
+                stroke-linejoin="round"
+              >
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </button>
           </li>
-          
         </ul>
-       
       </div>
     </header>
 
     <!-- Main Content -->
     <main class="p-4 md:p-8 grow">
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-8 gap-6">
+        <!-- stats -->
         <div
-          class="bg-[#7eb1ff] p-4 border-2 border-[#DCDEE3] rounded-xl col-span-full flex flex-wrap justify-between items-center gap-4 "
+          class="bg-[#7eb1ff] p-4 border-2 border-[#DCDEE3] rounded-xl col-span-full flex flex-wrap justify-between items-center gap-4"
         >
-          <div class="flex items-center gap-3">
-            <svg
-              class="text-[#0C1E4A]"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+          <div class="grid grid-cols-2 w-full lg:grid-cols-4 items-center gap-3">
+            <!-- stat 1 total mony -->
+            <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
+              <div class="flex items-center flex-col gap-2 text-[#000000] font-bold text-sm border-slate-100 pb-2.5">
+                <span class="text-xs uppercase font-semibold text-[#0C1E4A]/70">Total Recette</span>
+                <p class="text-2xl font-extrabold text-[#0C1E4A]">800 DH</p>
+                <span class="text-xs font-medium text-slate-700">Ce mois-ci</span>
+              </div>
+            </div>
+            <!-- stat 2 total trajects -->
+
+            <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
+              <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
+                <span class="text-xs uppercase font-semibold text-[#0C1E4A]/70">Trajets Totaux</span>
+                <p class="text-2xl font-extrabold text-[#0C1E4A]">12</p>
+                <span class="text-xs font-medium text-slate-700">Trajets actifs</span>
+              </div>
+            </div>
+
+            <!-- stat 3 total passnagers -->
+
+            <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
+              <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
+                <span class="text-xs uppercase font-semibold text-[#0C1E4A]/70">Passagers</span>
+                <p class="text-2xl font-extrabold text-[#0C1E4A]">145</p>
+                <span class="text-xs font-medium text-slate-700">Du réseau</span>
+              </div>
+            </div>
+            <!-- stat 2 passangers on waiting list -->
+
+            <div class="bg-white/40 p-4 rounded-xl border border-slate-100 flex flex-col gap-3">
+              <div class="flex items-center flex-col gap-2 text-[#0C1E4A] font-bold text-sm border-slate-100 pb-2.5">
+                <span class="text-xs uppercase font-semibold text-[#0C1E4A]/70">En Attente</span>
+                <p class="text-2xl font-extrabold text-[#0C1E4A]">8</p>
+                <span class="text-xs font-medium text-slate-700">Liste d'attente</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- filters background -->
+        <div class="bg-[#7eb1ff] p-4 border-2 border-[#DCDEE3] rounded-xl col-span-full">
+          <!-- city search & filter container -->
+          <div class="grid grid-cols-1 sm:grid-cols-8 gap-3 items-center w-full">
+            <!-- Ville search -->
+            <div
+              class="bg-white/50 backdrop-blur-sm p-3 rounded-xl border border-white/60 shadow-sm flex items-center gap-3 sm:col-span-5 lg:col-span-6"
             >
-              <path
-                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+              <label for="ville" class="text-[#0C1E4A] font-bold text-sm whitespace-nowrap">Ville :</label>
+              <input
+                type="text"
+                id="ville"
+                placeholder="Rechercher une ville..."
+                class="w-full bg-white/70 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800 transition focus:outline-none focus:ring-2 focus:ring-[#0C1E4A]"
               />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <p class="font-bold text-[#0C1E4A] flex items-center gap-3 text-lg">
-              Line: Safi
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+            </div>
+
+            <!-- Statut filter -->
+            <div
+              class="bg-white/50 backdrop-blur-sm p-3 rounded-xl border border-white/60 shadow-sm flex items-center gap-3 sm:col-span-3 lg:col-span-2"
+            >
+              <label for="filter" class="text-[#0C1E4A] font-bold text-sm whitespace-nowrap">Statut :</label>
+              <select
+                id="filter"
+                class="w-full bg-white/70 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0C1E4A] transition cursor-pointer"
               >
-                <path d="M18 8L22 12L18 16" />
-                <path d="M2 12H22" />
-              </svg>
-              Marrakech
-            </p>
+                <option value="tout">Tous les trajets</option>
+                <option value="disponible">Disponible</option>
+                <option value="complete">Complet</option>
+              </select>
+            </div>
           </div>
-          <span class="text-white font-bold px-4 py-1.5 rounded-full bg-[#0066FF] ">80 DH / place</span>
         </div>
 
-        <div class="bg-[#7eb1ff] p-4 rounded-xl lg:col-span-3 flex flex-col gap-4  border border-[#DCDEE3]/50">
-          <!-- Rserve form-->
-          <div class="bg-white/40 p-4 rounded-xl  border border-slate-100 flex flex-col gap-3">
-            <div class="flex items-center gap-2 text-[#0C1E4A] font-bold text-sm border-b border-slate-100 pb-2.5">
-              <svg
-                class="w-5 h-5 text-[#0066FF]"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              <span>Réserver une place</span>
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <label class="text-xs font-semibold text-slate-600">Passager</label>
-              <input
-                id="newPassagerName"
-                type="text"
-                placeholder="Ex : Mohamed Sidihmed"
-                class="bg-[#F8FAFC] border border-slate-200 text-slate-700 text-xs rounded-lg p-2.5 focus:outline-none focus:ring-1 focus:ring-[#0066FF]"
-              />
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <label class="text-xs font-semibold text-slate-600">Siège sélectionné</label>
-              <div class="flex flex-wrap gap-2">
-                <select
-                    id="slectedPlace"
-                  class="bg-[#F8FAFC] border border-slate-200 text-slate-700 text-xs rounded-lg p-2.5 flex-1 focus:outline-none focus:ring-1 focus:ring-[#0066FF] cursor-pointer"
-                >
-                </select>
-                <button
-                 id="addBtn"
-                  class="bg-[#0066FF] hover:bg-[#0052cc] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors cursor-pointer "
-                >
-                  Confirmer
-                </button>
-              </div>
-            </div>
-            <div id="reserveMessage" class="hidden text-center text-xs font-medium px-3 py-2 bg-[#38e23a] text-white text-xs font-bold px-4 py-2.5 rounded-lg"><p>Operation Sucsees</p></div>
-            <div id="reserveErorrMessage" class="hidden text-center text-xs font-medium px-3 py-2 bg-[#FF4242] text-white text-xs font-bold px-4 py-2.5 rounded-lg"><p>L'utilisateur a déjà effectué une réservation.</p></div>
-          </div>
-
-          <!-- modifier une place-->
-
-          <div class="bg-white/40 p-4 rounded-xl  border border-slate-100 flex flex-col gap-3">
-            <div class="flex items-center gap-2 text-[#0C1E4A] font-bold text-sm border-b border-slate-100 pb-2.5">
-              <svg
-                class="text-[#0066FF]"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-user-round-pen preview-icon"
-              >
-                <path d="M2 21a8 8 0 0 1 10.821-7.487" />
-                <path
-                  d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"
-                />
-                <circle cx="10" cy="8" r="5" />
-              </svg>
-              <span>modifier une place</span>
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <label class="text-xs font-semibold text-slate-600">Pasgger exestant</label>
-              <div class="flex gap-2">
-                <select
-                id="modifySelector"
-                  class="bg-[#F8FAFC] border border-slate-200 text-slate-700 text-xs rounded-lg p-2.5 flex-1 focus:outline-none focus:ring-1 focus:ring-[#0066FF] cursor-pointer"
-                >
-                  <option>-- choisir un passagger --</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <label   class="text-xs font-semibold text-slate-600">Nom de Passager</label>
-              <input
-              id="modifedNom"
-              required
-                type="text"
-                placeholder="Modefier le Nom"
-                class="bg-[#F8FAFC] border border-slate-200 text-slate-700 text-xs rounded-lg p-2.5 focus:outline-none focus:ring-1 focus:ring-[#0066FF]"
-              />
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <label class="text-xs font-semibold text-slate-600">Nouveau Siège</label>
-              <div class="flex flex-wrap gap-2">
-                <select
-                  id="newPlace"
-                  class="bg-[#F8FAFC] border border-slate-200 text-slate-700 text-xs rounded-lg p-2.5 flex-1 focus:outline-none focus:ring-1 focus:ring-[#0066FF] cursor-pointer"
-                >
-                  <option>-- choisir le noveau Siège --</option>
-                </select>
-                <button
-                id="Modifier-btn"
-                  class="bg-[#0066FF] hover:bg-[#0052cc] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors cursor-pointer "
-                >
-                  Modifier
-                </button>
-              </div>
-            </div>
-                        <div id="updateMessage" class="hidden text-center text-xs font-medium px-3 py-2 bg-[#38e23a] text-white text-xs font-bold px-4 py-2.5 rounded-lg"><p>Operation Sucsees</p></div>
-
-          </div>
-
-<!-- supprimer -->
-                    <div class="bg-white/40 p-4 rounded-xl  border border-[#F25757] flex flex-col gap-3">
-            <div class="flex items-center gap-2 text-[#0C1E4A] font-bold text-sm border-b border-slate-100 pb-2.5">
-<svg class="text-[#FF0000]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-x preview-icon"><path d="m16.5 16.5 5 5"/><path d="M2 21a8 8 0 0 1 11.531-7.18"/><path d="m21.5 16.5-5 5"/><circle cx="10" cy="8" r="5"/></svg>
-                <path d="M2 21a8 8 0 0 1 10.821-7.487" />
-                <path
-                  d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"
-                />
-                <circle cx="10" cy="8" r="5" />
-              </svg>
-              <span>Supprimer une place</span>
-            </div>
-
- 
-            <div class="flex flex-col gap-1.5">
-              <label class="text-xs font-semibold text-slate-600">passger Réserver</label>
-              <div class="flex flex-wrap gap-2">
-                <select
-                  id="supprimerSelector"
-                  class="bg-[#F8FAFC] border border-slate-200 text-slate-700 text-xs rounded-lg p-2.5 flex-1 focus:outline-none focus:ring-1 focus:ring-[#0066FF] cursor-pointer"
-                >
-                  <option>-- choisir un passagger --</option>
-                </select>
-                <button
-                id="deleteBtn"
-                  class="bg-[#F25757] hover:bg-[#FF0000] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors cursor-pointer "
-                >
-                  Supprimer
-                </button>
-              </div>
-            </div>
-            <div id="deleteMessage" class="hidden text-center text-xs font-medium px-3 py-2 bg-[#38e23a] text-white text-xs font-bold px-4 py-2.5 rounded-lg"><p>Operation Sucsees</p></div>
-          </div>
-
-
-        </div>
-
+        <!-- traject cards -->
         <div
-          class="bg-[#7eb1ff] p-5 rounded-xl lg:col-span-5 font-bold  border border-[#DCDEE3]/50 flex flex-col "
+          class="bg-[#7eb1ff] p-4 border-2 border-[#DCDEE3] rounded-xl col-span-full flex flex-wrap justify-between items-center gap-4"
         >
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm bg-white/40 p-3 rounded-lg">
-            <p class="text-slate-600 flex items-center gap-1.5">
-              <svg
-                class="w-4 h-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="m3.173 8.18 11-5a2 2 0 0 1 2.647.993L18.56 8" />
-                <rect x="2" y="8" width="20" height="13" rx="2" />
-              </svg>
-              <span id="total">20 Total</span>
-            </p>
-            <p class="text-[#008000] flex items-center gap-1.5">
-              <svg
-                class="w-4 h-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M20 6 9 17l-5-5" />
-              </svg>
-              <span id="Available">20 Available</span>
-            </p>
-            <p class="text-[#0C1E4A] flex items-center gap-1.5">
-              <svg
-                class="w-4 h-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M16 7h6v6" />
-                <path d="m22 7-8.5 8.5-5-5L2 17" />
-              </svg>
-              <span id="recette">Recette: 0 DH</span>
-            </p>
-          </div>
+          <div id="tripsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full"></div>
+        </div>
+        <!-- pagination -->
+        <div
+          id ="pagination";
+          class="bg-[#7eb1ff] p-4 border-2 border-[#DCDEE3] rounded-xl col-span-full flex flex-wrap justify-center items-center gap-4"
+        >
+          <div class="flex flex-row justify-center items-center gap-3 w-full">
+            <button class="rounded-[12px] px-4 py-2 bg-[#0C1E4A]/40 text-white">1</button>
 
-          <!-- Bus Seating Layout Card -->
-          <div id="cardContainer" class="mt-6 bg-white/40 p-5 rounded-2xl border border-blue-100/60 ">
-            <!-- Seats Container (Grid of 5 rows with 2 seats left, aisle, 2 seats right) -->
-            <div class="space-y-3 ">
-              <!-- Row 1  -->
-              <div class="grid grid-cols-9 gap-2 items-center" >
-                <!-- Seat 01 -->
-                <div
-                data-id="1"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100 flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">01</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!-- Seat 02 -->
-                <div
-                  data-id="2"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100 flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">02</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!--  vide -->
-                <div ></div>
-                <!-- Seat 03 -->
-                <div
-                  data-id="3"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100 flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">03</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!-- Seat 04  -->
-                 <div
-                  data-id="4"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100 flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">04</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
+            <button class="hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black">2</button>
 
-                <!-- Seat 05 -->
-                <div
-                  data-id="5"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100 flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">05</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!-- Seat 06 -->
-                <div
-                data-id="6"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">06</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!--  Arrow -->
-                <div ></div>
-
-                <!-- Seat 07 -->
-                <div
-                  data-id="7"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">07</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!-- Seat 08 -->
-                <div
-                  data-id="8"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">08</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-
-                <!-- Seat 09 -->
-                <div
-                data-id="9"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">09</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!-- Seat 10 -->
-                <div
-                data-id="10"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">10</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <div ></div>
-
-                <!-- Seat 11 -->
-                <div
-                  data-id="11"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">11</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!-- Seat 12 -->
-                <div
-                  data-id="12"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">12</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-
-                <!-- Seat 13 -->
-                <div
-                data-id="13"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">13</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!-- Seat 14 -->
-                <div
-                data-id="14"
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">14</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                
-                <div ></div>
-
-                <!-- Seat 15 -->
-                <div
-                  data-id="15"
-
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">15</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!-- Seat 16 -->
-                <div
-                  data-id="16"
-
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">16</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-
-                <!-- Seat 17 -->
-                <div
-                                  data-id="17"
-
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">17</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!-- Seat 18 -->
-                <div
-                                data-id="18"
-
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">18</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-               
-                <div ></div>
-
-                <!-- Seat 19 -->
-                <div
-                                  data-id="19"
-
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">19</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-                <!-- Seat 20 -->
-                <div
-                                data-id="20"
-
-                  class="card col-span-2 bg-white rounded-xl p-3 border border-slate-100  flex flex-col items-center justify-center cursor-pointer  transition-all"
-                >
-                  <span class="text-xl font-bold text-emerald-600">20</span>
-                  <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
-                </div>
-              </div>
-            </div>
+            <button class="hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black">3</button>
+            <button class="hover:cursor-pointer rounded-[12px] px-4 py-2 bg-[#E7E5E4] text-black">&gt;</button>
           </div>
         </div>
       </div>
@@ -510,11 +159,11 @@
     <!-- Footer -->
     <footer class="bg-[#3f5362] px-8 py-6 mt-8">
       <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-        <img src="/logo.png" alt="BusDirect Logo" class="w-28 object-contain" />
+        <img src="img/logo.png" alt="BusDirect Logo" class="w-28 object-contain" />
         <p class="text-sm text-white/80 italic">Plus qu'un trajet, une expérience!</p>
       </div>
     </footer>
 
-    <script src="/script.js"></script>
+    <script type="module" src="/js/main-trajets.js"></script>
   </body>
 </html>
