@@ -77,7 +77,8 @@ export function renderTrips(modifiedTrips, page, size) {
     tripsContainer.appendChild(card);
   });
 
-  rederPagination(modifiedTrips, page, modifiedTrips.length, size)
+  rederPagination(modifiedTrips, page, modifiedTrips.length, size);
+  renderStats();
 }
 
 export function handleFilter(e) {
@@ -159,4 +160,28 @@ export function rederPagination(modifiedTrips, courantPage, totalElement, pageSi
     });
     paginationHTML.appendChild(nextBtn);
   }
+}
+
+export function renderStats() {
+  let totalRecette = trips.reduce((somme, trip) => {
+    somme += trip.reservations.length * trip.price;
+    return somme;
+  }, 0);
+
+  let countTrips = trips.length;
+  let countPassager = trips.reduce((count, trip) => {
+    count += trip.reservations.length;
+    return count;
+  }, 0);
+
+  let countPassagerOnListDattend = trips.reduce((count, trip) => {
+    count += trip.waitingList.length;
+    return count;
+  }, 0);
+
+  //render new values
+  document.getElementById("totalRecette").innerText = totalRecette + " DH";
+  document.getElementById("totalTraject").innerText = countTrips;
+  document.getElementById("TotalPassager").innerText = countPassager;
+  document.getElementById("totalListAttend").innerText = countPassagerOnListDattend;
 }
