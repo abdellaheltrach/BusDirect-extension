@@ -13,7 +13,7 @@ const cardsContainer = document.getElementById("cardContainer");
 addBtn.addEventListener("click", reservePlace);
 deleteBtn.addEventListener("click", deletePlace);
 ModifierBtn.addEventListener("click", modifdyPlace);
-// cardsContainer.addEventListener("click", clickCard);
+cardsContainer.addEventListener("click", clickCard);
 
 //functions
 
@@ -216,12 +216,11 @@ function deletePlace() {
   courrantTraject.reservations.splice(reservationIndex, 1);
 
   const routeIndex = trips.findIndex((trip) => trip.id === routId);
-    trips[routeIndex] = courrantTraject;
-    saveTrips(trips);
+  trips[routeIndex] = courrantTraject;
+  saveTrips(trips);
 
-    renderSeatsDetails(courrantTraject);
+  renderSeatsDetails(courrantTraject);
 }
-
 
 function modifdyPlace() {
   const modifyPassangerSelectorHTML = document.getElementById("modifySelector");
@@ -231,8 +230,6 @@ function modifdyPlace() {
   const selectedSeatToModify = Number(modifyPassangerSelectorHTML.value);
   const newSelectedSeat = Number(modifyNewPlaceHTML.value);
   const newName = modifedNomHTML.value.trim();
-
-
 
   // Find the existing reservation in the array
   const reservation = courrantTraject.reservations.find((r) => Number(r.seat) === selectedSeatToModify);
@@ -251,13 +248,12 @@ function modifdyPlace() {
     reservation.name = newName;
   } else {
     // Change the seat to new seat
-  
 
     // Check if the target seat is already taken
     const isTargetSeatTaken = courrantTraject.reservations.some((r) => Number(r.seat) === newSelectedSeat);
 
     if (isTargetSeatTaken) {
-      showReserveErorrMessage(); 
+      showReserveErorrMessage();
       return;
     }
 
@@ -288,6 +284,25 @@ function modifdyPlace() {
   showUpdateMessage();
 }
 
+function clickCard(e) {
+  // console.log(e.target.closest(".card"))
+  const selectedCardHTML = e.target.closest(".card");
+  if (!selectedCardHTML) return;
+
+  const selectedCardId = Number(selectedCardHTML.dataset.id);
+
+  // Check if seat is reserved
+  const isReserved = courrantTraject.reservations.some((r) => Number(r.seat) === selectedCardId);
+
+  if (!isReserved) {
+    //not reserved need to fill the reseve form
+    fillReserveForm(selectedCardId);
+  } else {
+    //reserved place need to fill the modify and delete form
+    fillDeleteAndUpdateForm(selectedCardId);
+  }
+}
+
 //healp
 
 function showReserveMessage() {
@@ -316,4 +331,31 @@ function findFirstEmptyPlace() {
     }
   }
   return null;
+}
+
+function fillReserveForm(selectedCardId) {
+  let slectedPlace = document.getElementById("slectedPlace");
+  slectedPlace.value = selectedCardId;
+
+  //empty delete
+  let deletePlaceSelector = document.getElementById("supprimerSelector");
+  if (deletePlaceSelector) deletePlaceSelector.value = "0";
+
+  //emptyupdate
+  let modefyPlaceSelector = document.getElementById("modifySelector");
+  if (modefyPlaceSelector) modefyPlaceSelector.value = "0";
+}
+
+function fillDeleteAndUpdateForm(selectedCardId) {
+  //empty reserve form
+  let slectedPlace = document.getElementById("slectedPlace");
+  if (slectedPlace) slectedPlace.value = "0";
+
+  //delete
+  let deletePlaceSelector = document.getElementById("supprimerSelector");
+  if (deletePlaceSelector) deletePlaceSelector.value = selectedCardId;
+
+  //update
+  let modefyPlaceSelector = document.getElementById("modifySelector");
+  if (modefyPlaceSelector) modefyPlaceSelector.value = selectedCardId;
 }
