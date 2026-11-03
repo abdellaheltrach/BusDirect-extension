@@ -4,7 +4,7 @@ import { renderTrips, handleFilter } from "./ui.js";
 
 initialize(); 
 
-renderTrips(trips,2,6);
+renderTrips(trips,1,6);
 
 
 const serchCity = document.getElementById("ville");
