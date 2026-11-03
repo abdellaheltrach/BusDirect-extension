@@ -1,16 +1,14 @@
 import { initialize } from "./store.js";
 import { trips } from "./store.js";
-import {renderTripDetails} from './ui-cabine.js'
+import { renderTripDetails, refleshTheList, renderSeatsDetails } from "./ui-cabine.js";
 let routId = new URLSearchParams(location.search).get("id");
-initialize(); 
-
+initialize();
 
 let traject = trips.find((trip) => {
   return trip.id === Number(routId);
 });
 
-if(!traject)
-{
+if (!traject) {
   let pageContainer = document.getElementById("pageContainer");
   pageContainer.innerHTML = `
     <div class="col-span-full flex flex-col items-center justify-center py-16 px-4 bg-[#7eb1ff] rounded-2xl border border-slate-200 shadow-sm gap-4">
@@ -27,11 +25,9 @@ if(!traject)
       </a>
     </div>
   `;
-  console.log(pageContainer)
-} else{
+  console.log(pageContainer);
+} else {
   renderTripDetails(traject);
-
+  refleshTheList(traject);
+  renderSeatsDetails(traject);
 }
-
-
-

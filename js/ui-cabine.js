@@ -1,9 +1,8 @@
 import { trips } from "./store.js";
 
-
 export function renderTripDetails(traject) {
-    const detailsHtml = document.getElementById("details");
-    detailsHtml.innerHTML = `
+  const detailsHtml = document.getElementById("details");
+  detailsHtml.innerHTML = `
       <div class="flex items-center gap-3">
         <svg
           class="text-[#0C1E4A]"
@@ -48,8 +47,7 @@ export function renderTripDetails(traject) {
       </div>
       <span class="text-white font-bold px-4 py-1.5 rounded-full bg-[#0066FF]">${traject.price} DH / place</span>
     `;
-    updateStats(traject);
-    
+  updateStats(traject);
 }
 
 function updateStats(traject) {
@@ -61,15 +59,84 @@ function updateStats(traject) {
   avaibleHTML.innerText = `${traject.capacity - traject.reservations.length} Available`;
   moneyHTML.innerText = `Recette: ${traject.price * traject.reservations.length} DH`;
 }
+export function refleshTheList(traject) {
+  const slectedPlaceDropDown = document.getElementById("slectedPlace");
+  const supprimerSelector = document.getElementById("supprimerSelector");
+  const modifySelector = document.getElementById("modifySelector");
+  const modifyNewPlace = document.getElementById("newPlace");
+
+  //default values
+  slectedPlaceDropDown.innerHTML = `<option value="0">-- choisir un siège --</option>`;
+  supprimerSelector.innerHTML = `<option value="0">-- choisir un passager --</option>`;
+  modifySelector.innerHTML = `<option value="0">-- choisir un passager --</option>`;
+  modifyNewPlace.innerHTML = `<option value="0">-- choisir le nouveau siège --</option>`;
+
+  //extract reserved seats only and traject capacity
+  const reservedSeats = traject.reservations.map((r) => r.seat);
+  const capacity = traject.capacity;
+
+  for (let i = 1; i <= capacity; i++) {
+    if (!reservedSeats.includes(i)) {
+      // Fill dropdown menu for new reservation (available seats)
+      const option = document.createElement("option");
+      option.textContent = `Seat ${i}`;
+      option.value = i;
+      slectedPlaceDropDown.appendChild(option);
+
+      // Fill dropdown menu for new place change
+      const optionChagnePlace = document.createElement("option");
+      optionChagnePlace.textContent = `Seat ${i}`;
+      optionChagnePlace.value = i;
+      modifyNewPlace.appendChild(optionChagnePlace);
+    }
+  }
+
+  for (let i = 0; i < traject.reservations.length; i++) {
+    const res = traject.reservations[i];
+
+    // Fill delete dropdown
+    const deleteOption = document.createElement("option");
+    deleteOption.textContent = `Seat ${res.seat} - ${res.name}`;
+    deleteOption.value = res.seat;
+    supprimerSelector.appendChild(deleteOption);
+
+    // Create new option for the modify dropdown
+    const modifyOption = document.createElement("option");
+    modifyOption.textContent = `Passager: ${res.name} [Seat ${res.seat}]`;
+    modifyOption.value = res.seat;
+    modifySelector.appendChild(modifyOption);
+  }
+}
+
+export function renderSeatsDetails(traject) {
+  const cardsHTML = document.getElementsByClassName("card");
+  for (let card of cardsHTML) {
+    let cardId = card.dataset.id;
+
+    let placeStrr = cardId < 10 ? "0" + cardId : cardId;
 
 
-
-
-
-
-
-
-
-
-
-
+    if (
+      traject.reservations.some((r) => {
+        return r.seat === Number(cardId);
+      })
+    ) {
+      let reservation = traject.reservations.find((r) => {
+        return r.seat === Number(cardId);
+      });
+      card.classList.remove("bg-white");
+      card.classList.add("bg-[#fee2e2]");
+      card.innerHTML = `<span class="text-xl font-bold text-red-600">${placeStrr}</span>
+              <div
+                class="mt-1 px-2 py-0.5 rounded-md flex items-center gap-1 text-[11px] text-slate-700  border border-red-100"
+              >
+                <span class="truncate max-w-[65px] font-medium">${reservation.name}</span>
+              </div>`;
+    } else {
+      card.classList.remove("bg-[#fee2e2]");
+      card.classList.add("bg-white");
+      card.innerHTML = `<span class="text-xl font-bold text-emerald-600">${placeStrr}</span>
+              <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>`;
+    }
+  }
+}
