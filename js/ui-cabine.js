@@ -48,8 +48,18 @@ export function renderTripDetails(traject) {
       </div>
       <span class="text-white font-bold px-4 py-1.5 rounded-full bg-[#0066FF]">${traject.price} DH / place</span>
     `;
-    console.log(detailsHtml)
+    updateStats(traject);
     
+}
+
+function updateStats(traject) {
+  const totalHTML = document.getElementById("total");
+  const avaibleHTML = document.getElementById("Available");
+  const moneyHTML = document.getElementById("recette");
+
+  totalHTML.innerText = `${traject.capacity} Total`;
+  avaibleHTML.innerText = `${traject.capacity - traject.reservations.length} Available`;
+  moneyHTML.innerText = `Recette: ${traject.price * traject.reservations.length} DH`;
 }
 
 
