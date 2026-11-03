@@ -12,7 +12,7 @@ const cardsContainer = document.getElementById("cardContainer");
 //events
 addBtn.addEventListener("click", reservePlace);
 deleteBtn.addEventListener("click", deletePlace);
-// ModifierBtn.addEventListener("click", modifdyPlace);
+ModifierBtn.addEventListener("click", modifdyPlace);
 // cardsContainer.addEventListener("click", clickCard);
 
 //functions
@@ -223,6 +223,70 @@ function deletePlace() {
 }
 
 
+function modifdyPlace() {
+  const modifyPassangerSelectorHTML = document.getElementById("modifySelector");
+  const modifyNewPlaceHTML = document.getElementById("newPlace");
+  const modifedNomHTML = document.getElementById("modifedNom");
+
+  const selectedSeatToModify = Number(modifyPassangerSelectorHTML.value);
+  const newSelectedSeat = Number(modifyNewPlaceHTML.value);
+  const newName = modifedNomHTML.value.trim();
+
+
+
+  // Find the existing reservation in the array
+  const reservation = courrantTraject.reservations.find((r) => Number(r.seat) === selectedSeatToModify);
+
+  if (!reservation) {
+    return;
+  }
+
+  if (newSelectedSeat === 0) {
+    // Change ONLY the name in the same seat
+
+    if (newName === "") {
+      return;
+    }
+
+    reservation.name = newName;
+  } else {
+    // Change the seat to new seat
+  
+
+    // Check if the target seat is already taken
+    const isTargetSeatTaken = courrantTraject.reservations.some((r) => Number(r.seat) === newSelectedSeat);
+
+    if (isTargetSeatTaken) {
+      showReserveErorrMessage(); 
+      return;
+    }
+
+    // If name field is empty, keep the existing passenger name
+    if (newName !== "") {
+      reservation.name = newName;
+    }
+
+    reservation.seat = newSelectedSeat;
+  }
+
+  const routeIndex = trips.findIndex((trip) => trip.id === routId);
+  if (routeIndex !== -1) {
+    trips[routeIndex] = courrantTraject;
+  }
+
+  saveTrips(trips);
+
+  // Reset inputs and dropdowns
+  modifedNomHTML.value = "";
+  modifyPassangerSelectorHTML.selectedIndex = 0;
+  modifyNewPlaceHTML.selectedIndex = 0;
+
+  // Refresh UI elements
+  renderSeatsDetails(courrantTraject);
+  updateStats(courrantTraject);
+  refleshTheList(courrantTraject);
+  showUpdateMessage();
+}
 
 //healp
 
