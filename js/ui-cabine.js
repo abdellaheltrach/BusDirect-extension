@@ -1,7 +1,7 @@
 import { trips, saveTrips } from "./store.js";
 
 let courrantTraject;
-let routId = new URLSearchParams(location.search).get("id");
+let routId = Number(new URLSearchParams(location.search).get("id"));
 
 //buttons
 const addBtn = document.getElementById("addBtn");
@@ -11,7 +11,7 @@ const cardsContainer = document.getElementById("cardContainer");
 
 //events
 addBtn.addEventListener("click", reservePlace);
-// deleteBtn.addEventListener("click", deletePlace);
+deleteBtn.addEventListener("click", deletePlace);
 // ModifierBtn.addEventListener("click", modifdyPlace);
 // cardsContainer.addEventListener("click", clickCard);
 
@@ -159,13 +159,12 @@ export function renderSeatsDetails(traject) {
 }
 
 function reservePlace() {
-  console.log(courrantTraject);
   const PassagerName = document.getElementById("newPassagerName").value;
   let slectedPlace = document.getElementById("slectedPlace").value;
 
-    if (slectedPlace === "0") {
-      slectedPlace = findFirstEmptyPlace();
-    }
+  if (slectedPlace === "0") {
+    slectedPlace = findFirstEmptyPlace();
+  }
 
   let foundClient = courrantTraject.reservations.find((r) => {
     return r.name === PassagerName;
@@ -195,12 +194,35 @@ function reservePlace() {
 
   courrantTraject.reservations.push(obj);
 
-  const routeIndex = trips.findIndex((trip) => trip.id === Number(routId));
+  const routeIndex = trips.findIndex((trip) => trip.id === routId);
   trips[routeIndex] = courrantTraject;
-   saveTrips(trips);
+  saveTrips(trips);
 
   renderSeatsDetails(courrantTraject);
 }
+
+function deletePlace() {
+  const supprimerSelector = document.getElementById("supprimerSelector");
+  const supprimerSiege = document.getElementById("supprimerSelector").value;
+
+  const card = document.querySelector(`.card[data-id="${supprimerSiege}"]`);
+  if (!card) {
+    return;
+  }
+
+  // courrantTraject.splice(,)
+  const reservationIndex = courrantTraject.reservations.findIndex((r) => Number(r.seat) === Number(supprimerSiege));
+
+  courrantTraject.reservations.splice(reservationIndex, 1);
+
+  const routeIndex = trips.findIndex((trip) => trip.id === routId);
+    trips[routeIndex] = courrantTraject;
+    saveTrips(trips);
+
+    renderSeatsDetails(courrantTraject);
+}
+
+
 
 //healp
 
@@ -226,8 +248,8 @@ function findFirstEmptyPlace() {
 
   for (let i = 1; i <= courrantTraject.capacity; i++) {
     if (!reservedSeats.includes(i)) {
-      return String(i); 
+      return String(i);
     }
   }
-  return null; 
+  return null;
 }
