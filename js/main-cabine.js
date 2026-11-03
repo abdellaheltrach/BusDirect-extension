@@ -1,8 +1,9 @@
-import { initialize } from "./store.js";
-import { trips } from "./store.js";
+import { initialize, trips } from "./store.js";
 import { renderTripDetails, refleshTheList, renderSeatsDetails } from "./ui-cabine.js";
-let routId = new URLSearchParams(location.search).get("id");
+
+
 initialize();
+let routId = new URLSearchParams(location.search).get("id");
 
 let traject = trips.find((trip) => {
   return trip.id === Number(routId);

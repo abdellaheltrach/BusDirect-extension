@@ -537,5 +537,4 @@ function findFirstEmptyPlace()
     }
     
   }
-  
 }

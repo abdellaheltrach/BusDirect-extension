@@ -1,6 +1,24 @@
-import { trips } from "./store.js";
+import { trips, saveTrips } from "./store.js";
+
+let courrantTraject;
+let routId = new URLSearchParams(location.search).get("id");
+
+//buttons
+const addBtn = document.getElementById("addBtn");
+const deleteBtn = document.getElementById("deleteBtn");
+const ModifierBtn = document.getElementById("Modifier-btn");
+const cardsContainer = document.getElementById("cardContainer");
+
+//events
+addBtn.addEventListener("click", reservePlace);
+// deleteBtn.addEventListener("click", deletePlace);
+// ModifierBtn.addEventListener("click", modifdyPlace);
+// cardsContainer.addEventListener("click", clickCard);
+
+//functions
 
 export function renderTripDetails(traject) {
+  courrantTraject = traject;
   const detailsHtml = document.getElementById("details");
   detailsHtml.innerHTML = `
       <div class="flex items-center gap-3">
@@ -115,7 +133,6 @@ export function renderSeatsDetails(traject) {
 
     let placeStrr = cardId < 10 ? "0" + cardId : cardId;
 
-
     if (
       traject.reservations.some((r) => {
         return r.seat === Number(cardId);
@@ -139,4 +156,78 @@ export function renderSeatsDetails(traject) {
               <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>`;
     }
   }
+}
+
+function reservePlace() {
+  console.log(courrantTraject);
+  const PassagerName = document.getElementById("newPassagerName").value;
+  let slectedPlace = document.getElementById("slectedPlace").value;
+
+    if (slectedPlace === "0") {
+      slectedPlace = findFirstEmptyPlace();
+    }
+
+  let foundClient = courrantTraject.reservations.find((r) => {
+    return r.name === PassagerName;
+  });
+
+  if (foundClient) {
+    showReserveErorrMessage();
+    return;
+  }
+
+  if (PassagerName === "") {
+    return;
+  }
+
+  const cardsHTML = document.querySelectorAll(".card");
+
+  const card = document.querySelector(`.card[data-id="${slectedPlace}"]`);
+  if (!card) {
+    return;
+  }
+
+  let obj = {
+    seat: Number(slectedPlace),
+    name: PassagerName,
+    phone: "0769788093",
+  };
+
+  courrantTraject.reservations.push(obj);
+
+  const routeIndex = trips.findIndex((trip) => trip.id === Number(routId));
+  trips[routeIndex] = courrantTraject;
+   saveTrips(trips);
+
+  renderSeatsDetails(courrantTraject);
+}
+
+//healp
+
+function showReserveMessage() {
+  const msg = document.getElementById("reserveMessage");
+  msg.classList.remove("hidden");
+  setTimeout(() => msg.classList.add("hidden"), 3000);
+}
+function showReserveErorrMessage() {
+  const msg = document.getElementById("reserveErorrMessage");
+  msg.classList.remove("hidden");
+  setTimeout(() => msg.classList.add("hidden"), 3000);
+}
+
+function showUpdateMessage() {
+  const msg = document.getElementById("updateMessage");
+  msg.classList.remove("hidden");
+  setTimeout(() => msg.classList.add("hidden"), 3000);
+}
+
+function findFirstEmptyPlace() {
+  const reservedSeats = courrantTraject.reservations.map((r) => Number(r.seat));
+
+  for (let i = 1; i <= courrantTraject.capacity; i++) {
+    if (!reservedSeats.includes(i)) {
+      return String(i); 
+    }
+  }
+  return null; 
 }
