@@ -1,5 +1,5 @@
 import { trips, saveTrips } from "./store.js";
-import {recetteTrajet} from './reservations.js'
+import { recetteTrajet } from "./reservations.js";
 
 let courrantTraject;
 let routId = Number(new URLSearchParams(location.search).get("id"));
@@ -102,7 +102,11 @@ export function refleshTheList(traject) {
     if (!reservedSeats.includes(i)) {
       // Fill dropdown menu for new reservation (available seats)
       const option = document.createElement("option");
-      option.textContent = `Seat ${i}`;
+      if (i <= 4) {
+        option.textContent = `Seat ${i} — VIP ${ Math.round(traject.price * 1.1)} DH `;
+      } else {
+        option.textContent = `Seat ${i} — ${traject.price} DH `;
+      }
       option.value = i;
       slectedPlaceDropDown.appendChild(option);
 
