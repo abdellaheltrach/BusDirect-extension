@@ -140,6 +140,7 @@ export function renderSeatsDetails(traject) {
     //render the first 4 places vip
     if (cardId <= 4) {
       renderVipSeat(traject, card, placeStrr);
+      continue;
     }
 
     if (
@@ -460,7 +461,7 @@ function fillDeleteAndUpdateForm(selectedCardId) {
 
 function renderVipSeat(traject, card, placeStrr) {
   let cardId = Number(card.dataset.id);
-
+  console.log(card);
   if (
     traject.reservations.some((r) => {
       return r.seat === Number(cardId);
@@ -477,12 +478,20 @@ function renderVipSeat(traject, card, placeStrr) {
                 class="mt-1 px-2 py-0.5 rounded-md flex items-center gap-1 text-[11px] text-slate-700  border border-red-100"
               >
                 <span class="truncate max-w-[65px] font-medium">${reservation.name}</span>
+                <span class="absolute top-1 right-1 bg-blue-500 rounded-full text-white text-xs px-2 py-1">
+    VIP
+  </span>
                   `;
   } else {
     card.classList.remove("bg-[#fee2e2]");
     card.classList.add("bg-white");
+    card.classList.add("relative");
+
     card.innerHTML = `<span class="relative text-xl font-bold text-emerald-600">${placeStrr}</span>
               <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
+              <span class="absolute top-1 right-1 bg-blue-500 rounded-full text-white text-xs px-2 py-1">
+    VIP
+  </span>
               `;
   }
 }
