@@ -72,7 +72,16 @@ export function renderTrips(modifiedTrips, page, size) {
           <span class="text-[11px] uppercase font-semibold text-slate-400">Waiting List</span>
           <p class="text-xl font-extrabold text-[#FF0000]">${trip.waitingList.length}</p>
         </div>
-      </div>`;
+                        
+      </div>
+      <a href = "/cabine.html?id=${trip.id}">
+      <button
+                 id="addBtn"
+                  class="bg-[#0066FF] hover:bg-[#0052cc] w-full text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors cursor-pointer "
+                >
+                  Reserve
+                </button>
+                </a>`;
 
     tripsContainer.appendChild(card);
   });
