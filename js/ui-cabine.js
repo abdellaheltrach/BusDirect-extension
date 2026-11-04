@@ -15,11 +15,15 @@ deleteBtn.addEventListener("click", deletePlace);
 ModifierBtn.addEventListener("click", modifdyPlace);
 cardsContainer.addEventListener("click", clickCard);
 
+//draged place variable
+let dragedPlace = null;
+
 //functions
 
 export function renderTripDetails(traject) {
   courrantTraject = traject;
   const detailsHtml = document.getElementById("details");
+
   detailsHtml.innerHTML = `
       <div class="flex items-center gap-3">
         <svg
@@ -129,9 +133,14 @@ export function refleshTheList(traject) {
 export function renderSeatsDetails(traject) {
   const cardsHTML = document.getElementsByClassName("card");
   for (let card of cardsHTML) {
-    let cardId = card.dataset.id;
+    let cardId = Number(card.dataset.id);
 
     let placeStrr = cardId < 10 ? "0" + cardId : cardId;
+
+    //render the first 4 places vip
+    if (cardId <= 4) {
+      renderVipSeat(traject, card, placeStrr);
+    }
 
     if (
       traject.reservations.some((r) => {
@@ -303,6 +312,95 @@ function clickCard(e) {
   }
 }
 
+export function addDragableToCards() {
+  const cardsHTML = document.querySelectorAll(".card");
+
+  for (let i = 0; i < cardsHTML.length; i++) {
+    cardsHTML[i].draggable = true;
+    cardsHTML[i].addEventListener("dragstart", () => {
+      dragedPlace = cardsHTML[i];
+    });
+
+    cardsHTML[i].addEventListener("dragover", (e) => e.preventDefault());
+    cardsHTML[i].addEventListener("drop", handleDropInCards);
+  }
+}
+
+function handleDropInCards(e) {
+  e.preventDefault();
+
+  //back if the drop place is the same drag place or null
+  let dropPlaceHTML = e.target.closest(".card");
+  if (!dropPlaceHTML || dropPlaceHTML === dragedPlace) return;
+
+  let dropSeatId = Number(dropPlaceHTML.dataset.id);
+  let dragSeatId = Number(dragedPlace.dataset.id);
+
+  // Find reservations for drag and drop seats
+  let dropReservation = courrantTraject.reservations.find((r) => Number(r.seat) === dropSeatId);
+  let dragReservation = courrantTraject.reservations.find((r) => Number(r.seat) === dragSeatId);
+
+  // back if drag and drop both free
+  if (!dropReservation && !dragReservation) {
+    return;
+  }
+
+  // swap names if both reserved
+  if (dropReservation && dragReservation) {
+    let tempName = dragReservation.name;
+    let tempPhone = dragReservation.phone;
+
+    dragReservation.name = dropReservation.name;
+    dragReservation.phone = dropReservation.phone;
+
+    dropReservation.name = tempName;
+    dropReservation.phone = tempPhone;
+  }
+  // move reservation to other free place
+  else {
+    if (dragReservation) {
+      dragReservation.seat = dropSeatId;
+    } else if (dropReservation) {
+      dropReservation.seat = dragSeatId;
+    }
+  }
+
+  // Update trips array and save
+  const routeIndex = trips.findIndex((trip) => trip.id === routId);
+  if (routeIndex !== -1) {
+    trips[routeIndex] = courrantTraject;
+  }
+  saveTrips(trips);
+
+  // Update UI for both cards involved
+  const cardsList = [dragedPlace, dropPlaceHTML];
+  for (let card of cardsList) {
+    let cardId = Number(card.dataset.id);
+    let reservation = courrantTraject.reservations.find((r) => Number(r.seat) === cardId);
+    let placeStrr = cardId < 10 ? "0" + cardId : cardId;
+
+    if (reservation) {
+      card.classList.remove("bg-white");
+      card.classList.add("bg-[#fee2e2]");
+      card.innerHTML = `<span class="text-xl font-bold text-red-600">${placeStrr}</span>
+              <div
+                class="mt-1 px-2 py-0.5 rounded-md flex items-center gap-1 text-[11px] text-slate-700  border border-red-100"
+              >
+                <span class="truncate max-w-[65px] font-medium">${reservation.name}</span>
+              </div>`;
+    } else {
+      card.classList.remove("bg-[#fee2e2]");
+      card.classList.add("bg-white");
+      card.innerHTML = `<span class="text-xl font-bold text-emerald-600">${placeStrr}</span>
+              <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>`;
+    }
+  }
+
+  // refrresh storage list and stats
+  refleshTheList(courrantTraject);
+  updateStats(courrantTraject);
+}
+
 //healp
 
 function showReserveMessage() {
@@ -358,4 +456,33 @@ function fillDeleteAndUpdateForm(selectedCardId) {
   //update
   let modefyPlaceSelector = document.getElementById("modifySelector");
   if (modefyPlaceSelector) modefyPlaceSelector.value = selectedCardId;
+}
+
+function renderVipSeat(traject, card, placeStrr) {
+  let cardId = Number(card.dataset.id);
+
+  if (
+    traject.reservations.some((r) => {
+      return r.seat === Number(cardId);
+    })
+  ) {
+    let reservation = traject.reservations.find((r) => {
+      return r.seat === Number(cardId);
+    });
+    card.classList.remove("bg-white");
+    card.classList.add("bg-[#fee2e2]");
+    card.classList.add("relative");
+    card.innerHTML = `<span class="relative text-xl font-bold text-red-600">${placeStrr}</span>
+              <div
+                class="mt-1 px-2 py-0.5 rounded-md flex items-center gap-1 text-[11px] text-slate-700  border border-red-100"
+              >
+                <span class="truncate max-w-[65px] font-medium">${reservation.name}</span>
+                  `;
+  } else {
+    card.classList.remove("bg-[#fee2e2]");
+    card.classList.add("bg-white");
+    card.innerHTML = `<span class="relative text-xl font-bold text-emerald-600">${placeStrr}</span>
+              <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>
+              `;
+  }
 }
