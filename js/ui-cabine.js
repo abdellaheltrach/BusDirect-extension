@@ -1,4 +1,5 @@
 import { trips, saveTrips } from "./store.js";
+import {recetteTrajet} from './reservations.js'
 
 let courrantTraject;
 let routId = Number(new URLSearchParams(location.search).get("id"));
@@ -79,7 +80,7 @@ function updateStats(traject) {
 
   totalHTML.innerText = `${traject.capacity} Total`;
   avaibleHTML.innerText = `${traject.capacity - traject.reservations.length} Available`;
-  moneyHTML.innerText = `Recette: ${traject.price * traject.reservations.length} DH`;
+  moneyHTML.innerText = `Recette: ${recetteTrajet(traject)} DH`;
 }
 export function refleshTheList(traject) {
   const slectedPlaceDropDown = document.getElementById("slectedPlace");
@@ -461,7 +462,6 @@ function fillDeleteAndUpdateForm(selectedCardId) {
 
 function renderVipSeat(traject, card, placeStrr) {
   let cardId = Number(card.dataset.id);
-  console.log(card);
   if (
     traject.reservations.some((r) => {
       return r.seat === Number(cardId);
