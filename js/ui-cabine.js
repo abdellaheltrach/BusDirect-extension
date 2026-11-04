@@ -1,5 +1,5 @@
 import { trips, saveTrips } from "./store.js";
-import { recetteTrajet } from "./reservations.js";
+import { recetteTrajet, validatePhoneNumber, isPhoneAlreadyUsed } from "./reservations.js";
 
 let courrantTraject;
 let routId = Number(new URLSearchParams(location.search).get("id"));
@@ -103,7 +103,7 @@ export function refleshTheList(traject) {
       // Fill dropdown menu for new reservation (available seats)
       const option = document.createElement("option");
       if (i <= 4) {
-        option.textContent = `Seat ${i} — VIP ${ Math.round(traject.price * 1.1)} DH `;
+        option.textContent = `Seat ${i} — VIP ${Math.round(traject.price * 1.1)} DH `;
       } else {
         option.textContent = `Seat ${i} — ${traject.price} DH `;
       }
@@ -172,10 +172,10 @@ export function renderSeatsDetails(traject) {
     }
   }
 }
-
 function reservePlace() {
   const PassagerName = document.getElementById("newPassagerName").value;
   let slectedPlace = document.getElementById("slectedPlace").value;
+  let PhoneNumber = document.getElementById("phoneNumber").value;
 
   if (slectedPlace === "0") {
     slectedPlace = findFirstEmptyPlace();
@@ -191,6 +191,19 @@ function reservePlace() {
   }
 
   if (PassagerName === "") {
+    showReserveErorrMessage("Le nom du passager est obligatoire.");
+
+    return;
+  }
+
+  if (!validatePhoneNumber(PhoneNumber)) {
+    showReserveErorrMessage("incorect phone numbre format");
+
+    return;
+  }
+
+  if (isPhoneAlreadyUsed(PhoneNumber, courrantTraject)) {
+    showReserveErorrMessage("Ce numéro est déjà utilisé sur ce trajet.");
     return;
   }
 
@@ -204,7 +217,7 @@ function reservePlace() {
   let obj = {
     seat: Number(slectedPlace),
     name: PassagerName,
-    phone: "0769788093",
+    phone: PhoneNumber,
   };
 
   courrantTraject.reservations.push(obj);
@@ -212,8 +225,14 @@ function reservePlace() {
   const routeIndex = trips.findIndex((trip) => trip.id === routId);
   trips[routeIndex] = courrantTraject;
   saveTrips(trips);
-
+  refleshTheList(courrantTraject);
   renderSeatsDetails(courrantTraject);
+  updateStats(courrantTraject);
+
+  //empty them
+  document.getElementById("phoneNumber").value = "";
+  document.getElementById("slectedPlace").value = "0";
+  document.getElementById("newPassagerName").value = "";
 }
 
 function deletePlace() {
@@ -235,6 +254,8 @@ function deletePlace() {
   saveTrips(trips);
 
   renderSeatsDetails(courrantTraject);
+  updateStats(courrantTraject);
+  refleshTheList(courrantTraject);
 }
 
 function modifdyPlace() {
@@ -414,8 +435,12 @@ function showReserveMessage() {
   msg.classList.remove("hidden");
   setTimeout(() => msg.classList.add("hidden"), 3000);
 }
-function showReserveErorrMessage() {
+function showReserveErorrMessage(message) {
   const msg = document.getElementById("reserveErorrMessage");
+  if (message) {
+    msg.innerHTML = ` <p>${message}</p>`;
+  }
+
   msg.classList.remove("hidden");
   setTimeout(() => msg.classList.add("hidden"), 3000);
 }
@@ -430,6 +455,10 @@ function findFirstEmptyPlace() {
   const reservedSeats = courrantTraject.reservations.map((r) => Number(r.seat));
 
   for (let i = 1; i <= courrantTraject.capacity; i++) {
+    if(i<=4)
+    {
+      continue;
+    }
     if (!reservedSeats.includes(i)) {
       return String(i);
     }
