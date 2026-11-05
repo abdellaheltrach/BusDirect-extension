@@ -1,5 +1,10 @@
 import { trips, saveTrips } from "./store.js";
-import { recetteTrajet, validatePhoneNumber, isPhoneAlreadyUsed } from "./reservations.js";
+import {
+  recetteTrajet,
+  validatePhoneNumber,
+  isPhoneAlreadyUsed,
+  findReservationIndexBySeatNumber,
+} from "./reservations.js";
 
 let courrantTraject;
 let routId = Number(new URLSearchParams(location.search).get("id"));
@@ -455,8 +460,7 @@ function findFirstEmptyPlace() {
   const reservedSeats = courrantTraject.reservations.map((r) => Number(r.seat));
 
   for (let i = 1; i <= courrantTraject.capacity; i++) {
-    if(i<=4)
-    {
+    if (i <= 4) {
       continue;
     }
     if (!reservedSeats.includes(i)) {
@@ -476,21 +480,46 @@ function fillReserveForm(selectedCardId) {
 
   //emptyupdate
   let modefyPlaceSelector = document.getElementById("modifySelector");
-  if (modefyPlaceSelector) modefyPlaceSelector.value = "0";
+  let modefyPassangerNom = document.getElementById("modifedNom");
+  let modifyPhoneNumber = document.getElementById("modifyPhoneNumber");
+  if (modefyPlaceSelector) {
+    modefyPlaceSelector.value = "0";
+  }
+  if (modefyPassangerNom ) {
+    modefyPassangerNom.value = "";
+  }
+  if (modifyPhoneNumber ) {
+    modifyPhoneNumber.value = "";
+  }
 }
 
 function fillDeleteAndUpdateForm(selectedCardId) {
   //empty reserve form
   let slectedPlace = document.getElementById("slectedPlace");
-  if (slectedPlace) slectedPlace.value = "0";
+  if (slectedPlace) {
+    slectedPlace.value = "0";
+  }
 
   //delete
   let deletePlaceSelector = document.getElementById("supprimerSelector");
-  if (deletePlaceSelector) deletePlaceSelector.value = selectedCardId;
+  if (deletePlaceSelector) {
+    deletePlaceSelector.value = selectedCardId;
+  }
 
   //update
+  let selectedResevationIndex = findReservationIndexBySeatNumber(selectedCardId, courrantTraject);
   let modefyPlaceSelector = document.getElementById("modifySelector");
-  if (modefyPlaceSelector) modefyPlaceSelector.value = selectedCardId;
+  let modefyPassangerNom = document.getElementById("modifedNom");
+  let modifyPhoneNumber = document.getElementById("modifyPhoneNumber");
+  if (modefyPlaceSelector) {
+    modefyPlaceSelector.value = selectedCardId;
+  }
+  if (modefyPassangerNom && selectedResevationIndex !== -1) {
+    modefyPassangerNom.value = courrantTraject.reservations[selectedResevationIndex].name;
+  }
+  if (modifyPhoneNumber && selectedResevationIndex !== -1) {
+    modifyPhoneNumber.value = courrantTraject.reservations[selectedResevationIndex].phone;
+  }
 }
 
 function renderVipSeat(traject, card, placeStrr) {
