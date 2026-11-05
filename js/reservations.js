@@ -9,3 +9,16 @@ export function recetteTrajet(traject) {
 
   return totalRecette;
 }
+
+export function validatePhoneNumber(phone) {
+  const regex = /^0[67]\d{8}$/;
+  return regex.test(phone);
+}
+ 
+export function isPhoneAlreadyUsed(phoneNumber, traject) {
+  const inReservations = traject.reservations.some((r) => r.phone === phoneNumber);
+
+  const inWaitingList = traject.waitingList ? traject.waitingList.some((w) => w.phone === phoneNumber) : false;
+
+  return inReservations || inWaitingList;
+}
