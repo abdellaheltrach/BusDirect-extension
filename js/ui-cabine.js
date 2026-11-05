@@ -15,12 +15,17 @@ const deleteBtn = document.getElementById("deleteBtn");
 const ModifierBtn = document.getElementById("Modifier-btn");
 const cardsContainer = document.getElementById("cardContainer");
 
+//select  in modification
+const modifySelector = document.getElementById("modifySelector");
+
 //events
 addBtn.addEventListener("click", reservePlace);
 deleteBtn.addEventListener("click", deletePlace);
 ModifierBtn.addEventListener("click", modifdyPlace);
 cardsContainer.addEventListener("click", clickCard);
 
+//select  in modification
+modifySelector.addEventListener("change", handleSelectPassagerInModifying);
 //draged place variable
 let dragedPlace = null;
 
@@ -485,10 +490,10 @@ function fillReserveForm(selectedCardId) {
   if (modefyPlaceSelector) {
     modefyPlaceSelector.value = "0";
   }
-  if (modefyPassangerNom ) {
+  if (modefyPassangerNom) {
     modefyPassangerNom.value = "";
   }
-  if (modifyPhoneNumber ) {
+  if (modifyPhoneNumber) {
     modifyPhoneNumber.value = "";
   }
 }
@@ -555,5 +560,27 @@ function renderVipSeat(traject, card, placeStrr) {
     VIP
   </span>
               `;
+  }
+}
+
+function handleSelectPassagerInModifying() {
+
+
+  let modefyPlaceSelector = document.getElementById("modifySelector");
+  let modefyPassangerNom = document.getElementById("modifedNom");
+  let modifyPhoneNumber = document.getElementById("modifyPhoneNumber");
+  
+  let selectedCardId = modefyPlaceSelector.value;
+  let selectedResevationIndex = findReservationIndexBySeatNumber(selectedCardId, courrantTraject);
+  
+  
+  if (modefyPlaceSelector) {
+    modefyPlaceSelector.value = selectedCardId;
+  }
+  if (modefyPassangerNom && selectedResevationIndex !== -1) {
+    modefyPassangerNom.value = courrantTraject.reservations[selectedResevationIndex].name;
+  }
+  if (modifyPhoneNumber && selectedResevationIndex !== -1) {
+    modifyPhoneNumber.value = courrantTraject.reservations[selectedResevationIndex].phone;
   }
 }
