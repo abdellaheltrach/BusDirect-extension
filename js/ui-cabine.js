@@ -4,6 +4,7 @@ import {
   validatePhoneNumber,
   isPhoneAlreadyUsed,
   findReservationIndexBySeatNumber,
+  isPhoneRepeated,
 } from "./reservations.js";
 
 let courrantTraject;
@@ -272,10 +273,12 @@ function modifdyPlace() {
   const modifyPassangerSelectorHTML = document.getElementById("modifySelector");
   const modifyNewPlaceHTML = document.getElementById("newPlace");
   const modifedNomHTML = document.getElementById("modifedNom");
+  const modifyPhoneNumberHTML = document.getElementById("modifyPhoneNumber");
 
   const selectedSeatToModify = Number(modifyPassangerSelectorHTML.value);
   const newSelectedSeat = Number(modifyNewPlaceHTML.value);
   const newName = modifedNomHTML.value.trim();
+  const NewPhone = document.getElementById("modifyPhoneNumber").value;
 
   // Find the existing reservation in the array
   const reservation = courrantTraject.reservations.find((r) => Number(r.seat) === selectedSeatToModify);
@@ -291,7 +294,36 @@ function modifdyPlace() {
       return;
     }
 
+    let countNameRepeat = courrantTraject.reservations.filter((r) => {
+      return r.name === newName;
+    }).length;
+    console.log(countNameRepeat);
+    if (countNameRepeat > 1) {
+      showUpdateErorrMessage("cette utilisateur et déjà effectué une réservation.");
+      return;
+    }
+
+    let PhoneNumber = modifyPhoneNumberHTML.value;
+    if (!validatePhoneNumber(PhoneNumber)) {
+      showUpdateErorrMessage("incorect phone numbre format");
+
+      return;
+    }
+
+    if (isPhoneRepeated(PhoneNumber, courrantTraject) > 1) {
+      showUpdateErorrMessage("Ce numéro est déjà utilisé sur ce trajet.");
+      return;
+    }
+
+    //check if the name or phone changed or not
+
+    if (reservation.name === newName && reservation.phone === NewPhone) {
+      showUpdateErorrMessage("modifier les informations client pour continuer");
+      return;
+    }
+
     reservation.name = newName;
+    reservation.phone = NewPhone;
   } else {
     // Change the seat to new seat
 
@@ -308,7 +340,33 @@ function modifdyPlace() {
       reservation.name = newName;
     }
 
+    //name and phone
+
+    let countNameRepeat = courrantTraject.reservations.filter((r) => {
+      return r.name === newName;
+    }).length;
+    if (countNameRepeat > 1) {
+      showUpdateErorrMessage("cette utilisateur et déjà effectué une réservation.");
+      return;
+    }
+
+    let PhoneNumber = modifyPhoneNumberHTML.value;
+    if (!validatePhoneNumber(PhoneNumber)) {
+      showUpdateErorrMessage("incorect phone numbre format");
+
+      return;
+    }
+
+    if (isPhoneRepeated(PhoneNumber, courrantTraject) > 1) {
+      showUpdateErorrMessage("Ce numéro est déjà utilisé sur ce trajet.");
+      return;
+    }
+
+
+
     reservation.seat = newSelectedSeat;
+    reservation.name = newName;
+    reservation.phone = NewPhone;
   }
 
   const routeIndex = trips.findIndex((trip) => trip.id === routId);
@@ -454,6 +512,15 @@ function showReserveErorrMessage(message) {
   msg.classList.remove("hidden");
   setTimeout(() => msg.classList.add("hidden"), 3000);
 }
+function showUpdateErorrMessage(message) {
+  const msg = document.getElementById("updateErorrMessage");
+  if (message) {
+    msg.innerHTML = ` <p>${message}</p>`;
+  }
+
+  msg.classList.remove("hidden");
+  setTimeout(() => msg.classList.add("hidden"), 3000);
+}
 
 function showUpdateMessage() {
   const msg = document.getElementById("updateMessage");
@@ -564,16 +631,13 @@ function renderVipSeat(traject, card, placeStrr) {
 }
 
 function handleSelectPassagerInModifying() {
-
-
   let modefyPlaceSelector = document.getElementById("modifySelector");
   let modefyPassangerNom = document.getElementById("modifedNom");
   let modifyPhoneNumber = document.getElementById("modifyPhoneNumber");
-  
+
   let selectedCardId = modefyPlaceSelector.value;
   let selectedResevationIndex = findReservationIndexBySeatNumber(selectedCardId, courrantTraject);
-  
-  
+
   if (modefyPlaceSelector) {
     modefyPlaceSelector.value = selectedCardId;
   }

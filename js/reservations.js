@@ -23,6 +23,13 @@ export function isPhoneAlreadyUsed(phoneNumber, traject) {
   return inReservations || inWaitingList;
 }
 
+export function isPhoneRepeated(phoneNumber, traject) {
+  const inReservations = traject.reservations.filter((r) => r.phone === phoneNumber).length;
+  const countRepeatInWaitingList =traject.waitingList.filter((w) => w.phone === phoneNumber).length;
+
+  return inReservations + countRepeatInWaitingList;
+}
+
 export function findReservationIndexBySeatNumber(SeatNumber, traject) {
   return traject.reservations.findIndex((r) => Number(r.seat) === Number(SeatNumber));
 }
