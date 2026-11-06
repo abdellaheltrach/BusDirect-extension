@@ -1,5 +1,10 @@
 import { initialize, trips } from "./store.js";
-import { renderTripDetails, refleshTheList, renderSeatsDetails, addDragableToCards } from "./ui-cabine.js";
+import {
+  renderTripDetails,
+  refleshTheList,
+  renderSeatsDetails,
+  addDragableToCards,
+} from "./ui-cabine.js";
 
 
 initialize();
@@ -32,4 +37,5 @@ if (!traject) {
   refleshTheList(traject);
   renderSeatsDetails(traject);
   addDragableToCards();
+
 }

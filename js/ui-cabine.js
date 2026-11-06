@@ -1,5 +1,11 @@
 import { trips, saveTrips } from "./store.js";
-import { recetteTrajet, validatePhoneNumber, isPhoneAlreadyUsed } from "./reservations.js";
+import {
+  recetteTrajet,
+  validatePhoneNumber,
+  isPhoneAlreadyUsed,
+  findReservationIndexBySeatNumber,
+  isPhoneRepeated,
+} from "./reservations.js";
 
 let courrantTraject;
 let routId = Number(new URLSearchParams(location.search).get("id"));
@@ -10,12 +16,17 @@ const deleteBtn = document.getElementById("deleteBtn");
 const ModifierBtn = document.getElementById("Modifier-btn");
 const cardsContainer = document.getElementById("cardContainer");
 
+//select  in modification
+const modifySelector = document.getElementById("modifySelector");
+
 //events
 addBtn.addEventListener("click", reservePlace);
 deleteBtn.addEventListener("click", deletePlace);
 ModifierBtn.addEventListener("click", modifdyPlace);
 cardsContainer.addEventListener("click", clickCard);
 
+//select  in modification
+modifySelector.addEventListener("change", handleSelectPassagerInModifying);
 //draged place variable
 let dragedPlace = null;
 
@@ -71,6 +82,7 @@ export function renderTripDetails(traject) {
       <span class="text-white font-bold px-4 py-1.5 rounded-full bg-[#0066FF]">${traject.price} DH / place</span>
     `;
   updateStats(traject);
+  disableFormsOnFullCabin(traject);
 }
 
 function updateStats(traject) {
@@ -228,6 +240,7 @@ function reservePlace() {
   refleshTheList(courrantTraject);
   renderSeatsDetails(courrantTraject);
   updateStats(courrantTraject);
+  disableFormsOnFullCabin(courrantTraject);
 
   //empty them
   document.getElementById("phoneNumber").value = "";
@@ -252,7 +265,7 @@ function deletePlace() {
   const routeIndex = trips.findIndex((trip) => trip.id === routId);
   trips[routeIndex] = courrantTraject;
   saveTrips(trips);
-
+  disableFormsOnFullCabin(courrantTraject);
   renderSeatsDetails(courrantTraject);
   updateStats(courrantTraject);
   refleshTheList(courrantTraject);
@@ -262,10 +275,12 @@ function modifdyPlace() {
   const modifyPassangerSelectorHTML = document.getElementById("modifySelector");
   const modifyNewPlaceHTML = document.getElementById("newPlace");
   const modifedNomHTML = document.getElementById("modifedNom");
+  const modifyPhoneNumberHTML = document.getElementById("modifyPhoneNumber");
 
   const selectedSeatToModify = Number(modifyPassangerSelectorHTML.value);
   const newSelectedSeat = Number(modifyNewPlaceHTML.value);
   const newName = modifedNomHTML.value.trim();
+  const NewPhone = document.getElementById("modifyPhoneNumber").value;
 
   // Find the existing reservation in the array
   const reservation = courrantTraject.reservations.find((r) => Number(r.seat) === selectedSeatToModify);
@@ -281,7 +296,36 @@ function modifdyPlace() {
       return;
     }
 
+    let countNameRepeat = courrantTraject.reservations.filter((r) => {
+      return r.name === newName;
+    }).length;
+    console.log(countNameRepeat);
+    if (countNameRepeat > 1) {
+      showUpdateErorrMessage("cette utilisateur et déjà effectué une réservation.");
+      return;
+    }
+
+    let PhoneNumber = modifyPhoneNumberHTML.value;
+    if (!validatePhoneNumber(PhoneNumber)) {
+      showUpdateErorrMessage("incorect phone numbre format");
+
+      return;
+    }
+
+    if (isPhoneRepeated(PhoneNumber, courrantTraject) > 1) {
+      showUpdateErorrMessage("Ce numéro est déjà utilisé sur ce trajet.");
+      return;
+    }
+
+    //check if the name or phone changed or not
+
+    if (reservation.name === newName && reservation.phone === NewPhone) {
+      showUpdateErorrMessage("modifier les informations client pour continuer");
+      return;
+    }
+
     reservation.name = newName;
+    reservation.phone = NewPhone;
   } else {
     // Change the seat to new seat
 
@@ -298,7 +342,31 @@ function modifdyPlace() {
       reservation.name = newName;
     }
 
+    //name and phone
+
+    let countNameRepeat = courrantTraject.reservations.filter((r) => {
+      return r.name === newName;
+    }).length;
+    if (countNameRepeat > 1) {
+      showUpdateErorrMessage("cette utilisateur et déjà effectué une réservation.");
+      return;
+    }
+
+    let PhoneNumber = modifyPhoneNumberHTML.value;
+    if (!validatePhoneNumber(PhoneNumber)) {
+      showUpdateErorrMessage("incorect phone numbre format");
+
+      return;
+    }
+
+    if (isPhoneRepeated(PhoneNumber, courrantTraject) > 1) {
+      showUpdateErorrMessage("Ce numéro est déjà utilisé sur ce trajet.");
+      return;
+    }
+
     reservation.seat = newSelectedSeat;
+    reservation.name = newName;
+    reservation.phone = NewPhone;
   }
 
   const routeIndex = trips.findIndex((trip) => trip.id === routId);
@@ -444,6 +512,15 @@ function showReserveErorrMessage(message) {
   msg.classList.remove("hidden");
   setTimeout(() => msg.classList.add("hidden"), 3000);
 }
+function showUpdateErorrMessage(message) {
+  const msg = document.getElementById("updateErorrMessage");
+  if (message) {
+    msg.innerHTML = ` <p>${message}</p>`;
+  }
+
+  msg.classList.remove("hidden");
+  setTimeout(() => msg.classList.add("hidden"), 3000);
+}
 
 function showUpdateMessage() {
   const msg = document.getElementById("updateMessage");
@@ -455,8 +532,7 @@ function findFirstEmptyPlace() {
   const reservedSeats = courrantTraject.reservations.map((r) => Number(r.seat));
 
   for (let i = 1; i <= courrantTraject.capacity; i++) {
-    if(i<=4)
-    {
+    if (i <= 4) {
       continue;
     }
     if (!reservedSeats.includes(i)) {
@@ -476,21 +552,46 @@ function fillReserveForm(selectedCardId) {
 
   //emptyupdate
   let modefyPlaceSelector = document.getElementById("modifySelector");
-  if (modefyPlaceSelector) modefyPlaceSelector.value = "0";
+  let modefyPassangerNom = document.getElementById("modifedNom");
+  let modifyPhoneNumber = document.getElementById("modifyPhoneNumber");
+  if (modefyPlaceSelector) {
+    modefyPlaceSelector.value = "0";
+  }
+  if (modefyPassangerNom) {
+    modefyPassangerNom.value = "";
+  }
+  if (modifyPhoneNumber) {
+    modifyPhoneNumber.value = "";
+  }
 }
 
 function fillDeleteAndUpdateForm(selectedCardId) {
   //empty reserve form
   let slectedPlace = document.getElementById("slectedPlace");
-  if (slectedPlace) slectedPlace.value = "0";
+  if (slectedPlace) {
+    slectedPlace.value = "0";
+  }
 
   //delete
   let deletePlaceSelector = document.getElementById("supprimerSelector");
-  if (deletePlaceSelector) deletePlaceSelector.value = selectedCardId;
+  if (deletePlaceSelector) {
+    deletePlaceSelector.value = selectedCardId;
+  }
 
   //update
+  let selectedResevationIndex = findReservationIndexBySeatNumber(selectedCardId, courrantTraject);
   let modefyPlaceSelector = document.getElementById("modifySelector");
-  if (modefyPlaceSelector) modefyPlaceSelector.value = selectedCardId;
+  let modefyPassangerNom = document.getElementById("modifedNom");
+  let modifyPhoneNumber = document.getElementById("modifyPhoneNumber");
+  if (modefyPlaceSelector) {
+    modefyPlaceSelector.value = selectedCardId;
+  }
+  if (modefyPassangerNom && selectedResevationIndex !== -1) {
+    modefyPassangerNom.value = courrantTraject.reservations[selectedResevationIndex].name;
+  }
+  if (modifyPhoneNumber && selectedResevationIndex !== -1) {
+    modifyPhoneNumber.value = courrantTraject.reservations[selectedResevationIndex].phone;
+  }
 }
 
 function renderVipSeat(traject, card, placeStrr) {
@@ -526,5 +627,52 @@ function renderVipSeat(traject, card, placeStrr) {
     VIP
   </span>
               `;
+  }
+}
+
+function handleSelectPassagerInModifying() {
+  let modefyPlaceSelector = document.getElementById("modifySelector");
+  let modefyPassangerNom = document.getElementById("modifedNom");
+  let modifyPhoneNumber = document.getElementById("modifyPhoneNumber");
+
+  let selectedCardId = modefyPlaceSelector.value;
+  let selectedResevationIndex = findReservationIndexBySeatNumber(selectedCardId, courrantTraject);
+
+  if (modefyPlaceSelector) {
+    modefyPlaceSelector.value = selectedCardId;
+  }
+  if (modefyPassangerNom && selectedResevationIndex !== -1) {
+    modefyPassangerNom.value = courrantTraject.reservations[selectedResevationIndex].name;
+  }
+  if (modifyPhoneNumber && selectedResevationIndex !== -1) {
+    modifyPhoneNumber.value = courrantTraject.reservations[selectedResevationIndex].phone;
+  }
+}
+export function disableFormsOnFullCabin(traject) {
+  const capacity = traject.capacity;
+  const reservationsLength = traject.reservations.length;
+
+  const reserveForm = document.getElementById("reserveForm");
+  if (reserveForm) {
+    if (capacity === reservationsLength) {
+      reserveForm.setAttribute("aria-disabled", "true");
+      reserveForm.classList.add("pointer-events-none", "opacity-50");
+    } else {
+      reserveForm.setAttribute("aria-disabled", "false");
+      reserveForm.classList.remove("pointer-events-none", "opacity-50");
+    }
+  }
+
+  const newPlace = document.getElementById("newPlace");
+  if (newPlace) {
+    if (capacity === reservationsLength) {
+      newPlace.setAttribute("aria-disabled", "true");
+      newPlace.disabled = true;
+      newPlace.classList.add("pointer-events-none", "opacity-50");
+    } else {
+      newPlace.setAttribute("aria-disabled", "false");
+      newPlace.disabled = false;
+      newPlace.classList.remove("pointer-events-none", "opacity-50");
+    }
   }
 }

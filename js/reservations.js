@@ -14,11 +14,22 @@ export function validatePhoneNumber(phone) {
   const regex = /^0[67]\d{8}$/;
   return regex.test(phone);
 }
- 
+
 export function isPhoneAlreadyUsed(phoneNumber, traject) {
   const inReservations = traject.reservations.some((r) => r.phone === phoneNumber);
 
   const inWaitingList = traject.waitingList ? traject.waitingList.some((w) => w.phone === phoneNumber) : false;
 
   return inReservations || inWaitingList;
+}
+
+export function isPhoneRepeated(phoneNumber, traject) {
+  const inReservations = traject.reservations.filter((r) => r.phone === phoneNumber).length;
+  const countRepeatInWaitingList =traject.waitingList.filter((w) => w.phone === phoneNumber).length;
+
+  return inReservations + countRepeatInWaitingList;
+}
+
+export function findReservationIndexBySeatNumber(SeatNumber, traject) {
+  return traject.reservations.findIndex((r) => Number(r.seat) === Number(SeatNumber));
 }
