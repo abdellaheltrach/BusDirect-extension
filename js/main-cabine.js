@@ -4,7 +4,6 @@ import {
   refleshTheList,
   renderSeatsDetails,
   addDragableToCards,
-  disableFormsOnFullCabin,
 } from "./ui-cabine.js";
 
 
@@ -38,8 +37,5 @@ if (!traject) {
   refleshTheList(traject);
   renderSeatsDetails(traject);
   addDragableToCards();
-  if(traject.capacity === traject.reservations.length)
-  {
-    disableFormsOnFullCabin(traject);
-  }
+
 }

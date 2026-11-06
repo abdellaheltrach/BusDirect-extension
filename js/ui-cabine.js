@@ -82,6 +82,7 @@ export function renderTripDetails(traject) {
       <span class="text-white font-bold px-4 py-1.5 rounded-full bg-[#0066FF]">${traject.price} DH / place</span>
     `;
   updateStats(traject);
+  disableFormsOnFullCabin(traject);
 }
 
 function updateStats(traject) {
@@ -648,30 +649,30 @@ function handleSelectPassagerInModifying() {
   }
 }
 export function disableFormsOnFullCabin(traject) {
-const capacity = traject.capacity;
-const reservationsLength = traject.reservations.length;
+  const capacity = traject.capacity;
+  const reservationsLength = traject.reservations.length;
 
-const reserveForm = document.getElementById("reserveForm");
-if (reserveForm) { 
-  if (capacity === reservationsLength) {
-    reserveForm.setAttribute("aria-disabled", "true");
-    reserveForm.classList.add("pointer-events-none", "opacity-50");
-  } else {
-    reserveForm.setAttribute("aria-disabled", "false");
-    reserveForm.classList.remove("pointer-events-none", "opacity-50");
+  const reserveForm = document.getElementById("reserveForm");
+  if (reserveForm) {
+    if (capacity === reservationsLength) {
+      reserveForm.setAttribute("aria-disabled", "true");
+      reserveForm.classList.add("pointer-events-none", "opacity-50");
+    } else {
+      reserveForm.setAttribute("aria-disabled", "false");
+      reserveForm.classList.remove("pointer-events-none", "opacity-50");
+    }
   }
-}
 
-const newPlace = document.getElementById("newPlace");
-if (newPlace) {
-  if (capacity === reservationsLength) {
-    newPlace.setAttribute("aria-disabled", "true");
-    newPlace.disabled = true;
-    newPlace.classList.add("pointer-events-none", "opacity-50");
-  } else {
-    newPlace.setAttribute("aria-disabled", "false");
-    newPlace.disabled = false;
-    newPlace.classList.remove("pointer-events-none", "opacity-50");
+  const newPlace = document.getElementById("newPlace");
+  if (newPlace) {
+    if (capacity === reservationsLength) {
+      newPlace.setAttribute("aria-disabled", "true");
+      newPlace.disabled = true;
+      newPlace.classList.add("pointer-events-none", "opacity-50");
+    } else {
+      newPlace.setAttribute("aria-disabled", "false");
+      newPlace.disabled = false;
+      newPlace.classList.remove("pointer-events-none", "opacity-50");
+    }
   }
-}
 }
