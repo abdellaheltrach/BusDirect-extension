@@ -5,6 +5,7 @@ import {
   isPhoneAlreadyUsed,
   findReservationIndexBySeatNumber,
   isPhoneRepeated,
+  isPassengerNameAlreadyUsed,
 } from "./reservations.js";
 
 let courrantTraject;
@@ -18,6 +19,15 @@ const cardsContainer = document.getElementById("cardContainer");
 
 //select  in modification
 const modifySelector = document.getElementById("modifySelector");
+
+//waiting list
+const addWaitingBtn = document.getElementById("addWaitingBtn");
+const waitingListContainer = document.getElementById("waitingListContainer");
+
+// waiting list events
+
+addWaitingBtn.addEventListener("click", addWaitingListPassenger);
+waitingListContainer.addEventListener("click", removeWaitingListPassenger);
 
 //events
 addBtn.addEventListener("click", reservePlace);
@@ -183,6 +193,7 @@ export function renderSeatsDetails(traject) {
               <span class="text-[11px] text-slate-400 font-normal mt-0.5">Libre</span>`;
     }
   }
+  renderWaitingList(traject);
 }
 function reservePlace() {
   const PassagerName = document.getElementById("newPassagerName").value;
@@ -261,6 +272,18 @@ function deletePlace() {
   const reservationIndex = courrantTraject.reservations.findIndex((r) => Number(r.seat) === Number(supprimerSiege));
 
   courrantTraject.reservations.splice(reservationIndex, 1);
+
+  // Si la liste d'attente n'est pas vide, le premier obtient le siège libéré
+  if (courrantTraject.waitingList && courrantTraject.waitingList.length > 0) {
+    const [firstWaiting, ...remainingWaiting] = courrantTraject.waitingList;
+    courrantTraject.waitingList = remainingWaiting;
+
+    courrantTraject.reservations.push({
+      seat: Number(supprimerSiege),
+      name: firstWaiting.name,
+      phone: firstWaiting.phone,
+    });
+  }
 
   const routeIndex = trips.findIndex((trip) => trip.id === routId);
   trips[routeIndex] = courrantTraject;
@@ -675,4 +698,111 @@ export function disableFormsOnFullCabin(traject) {
       newPlace.classList.remove("pointer-events-none", "opacity-50");
     }
   }
+
+  const waitingForm = document.getElementById("waitingForm");
+  if (waitingForm) {
+    waitingForm.setAttribute("aria-disabled", capacity === reservationsLength ? "false" : "true");
+    if (capacity === reservationsLength) {
+      waitingForm.classList.remove("pointer-events-none", "opacity-50");
+    } else {
+      waitingForm.classList.add("pointer-events-none", "opacity-50");
+    }
+  }
+}
+function addWaitingListPassenger() {
+  const nameInput = document.getElementById("waitingName");
+  const phoneInput = document.getElementById("waitingPhone");
+  const name = nameInput.value.trim();
+  const phone = phoneInput.value.trim();
+
+  if (!name) {
+    showWaitingErrorMessage("Le nom du passager est obligatoire.");
+    return;
+  }
+
+  if (isPassengerNameAlreadyUsed(name, courrantTraject)) {
+    showWaitingErrorMessage("Ce passager a déjà une réservation ou est en liste d'attente.");
+    return;
+  }
+  if (!validatePhoneNumber(phone)) {
+    showWaitingErrorMessage("Format de numéro de téléphone incorrect.");
+    return;
+  }
+  if (isPhoneAlreadyUsed(phone, courrantTraject)) {
+    showWaitingErrorMessage("Ce numéro est déjà utilisé sur ce trajet.");
+    return;
+  }
+
+  if (!courrantTraject.waitingList) {
+    courrantTraject.waitingList = [];
+  }
+  courrantTraject.waitingList.push({ name, phone });
+
+  const routeIndex = trips.findIndex((trip) => trip.id === routId);
+  if (routeIndex !== -1) trips[routeIndex] = courrantTraject;
+  saveTrips(trips);
+
+  nameInput.value = "";
+  phoneInput.value = "";
+  renderWaitingList(courrantTraject);
+}
+
+function renderWaitingList(traject) {
+  const container = document.getElementById("waitingListContainer");
+  if (!container) return;
+
+  if (!traject.waitingList || traject.waitingList.length === 0) {
+    container.innerHTML = `<span class="text-xs text-slate-400 italic">Aucune personne en attente</span>`;
+    return;
+  }
+
+  container.innerHTML = traject.waitingList
+    .map(
+      (item, idx) => `
+      <div class="flex items-center justify-between bg-white p-2 rounded-lg border border-slate-100 text-xs">
+        <div class="flex flex-col">
+          <span class="font-bold text-slate-700">${idx + 1}. ${item.name}</span>
+          <span class="text-[10px] text-slate-400">${item.phone}</span>
+        </div>
+        <button data-index="${idx}" class="remove-waiting-btn text-red-500 hover:text-red-700 font-bold px-2 py-1 cursor-pointer">
+          Retirer
+        </button>
+      </div>
+    `,
+    )
+    .join("");
+}
+
+function removeWaitingListPassenger(e) {
+  const removeBtn = e.target.closest(".remove-waiting-btn");
+  if (!removeBtn) return;
+
+  const index = Number(removeBtn.dataset.index);
+  if (isNaN(index)) return;
+
+  courrantTraject.waitingList.splice(index, 1);
+
+  const routeIndex = trips.findIndex((trip) => trip.id === routId);
+  if (routeIndex !== -1) trips[routeIndex] = courrantTraject;
+  saveTrips(trips);
+
+  renderWaitingList(courrantTraject);
+}
+
+function showWaitingMessage(message) {
+  const msg = document.getElementById("waitingMessage");
+  if (message) {
+    msg.querySelector("p").innerText = message;
+  }
+  msg.classList.remove("hidden");
+  setTimeout(() => msg.classList.add("hidden"), 3000);
+}
+
+function showWaitingErrorMessage(message) {
+  const msg = document.getElementById("waitingErrorMessage");
+  if (message) {
+    msg.querySelector("p").innerText = message;
+  }
+  msg.classList.remove("hidden");
+  setTimeout(() => msg.classList.add("hidden"), 3000);
 }

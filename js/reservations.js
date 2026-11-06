@@ -11,7 +11,7 @@ export function recetteTrajet(traject) {
 }
 
 export function validatePhoneNumber(phone) {
-  const regex = /^0[67]\d{8}$/;
+  const regex = /^0[675]\d{8}$/;
   return regex.test(phone);
 }
 
@@ -32,4 +32,16 @@ export function isPhoneRepeated(phoneNumber, traject) {
 
 export function findReservationIndexBySeatNumber(SeatNumber, traject) {
   return traject.reservations.findIndex((r) => Number(r.seat) === Number(SeatNumber));
+}
+
+
+export function isPassengerNameAlreadyUsed(name, traject) {
+  if (!name) return false;
+  const targetName = name.trim().toLowerCase();
+
+  const inReservations = traject.reservations.some((r) => r.name.trim().toLowerCase() === targetName);
+
+  const inWaitingList = traject.waitingList.some((w) => w.name.trim().toLowerCase() === targetName);
+
+  return inReservations || inWaitingList;
 }
