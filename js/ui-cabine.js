@@ -273,25 +273,34 @@ function deletePlace() {
 
   courrantTraject.reservations.splice(reservationIndex, 1);
 
-  // Si la liste d'attente n'est pas vide, le premier obtient le siège libéré
+  let message = "Suppression effectuée avec succès.";
+
   if (courrantTraject.waitingList && courrantTraject.waitingList.length > 0) {
     const [firstWaiting, ...remainingWaiting] = courrantTraject.waitingList;
     courrantTraject.waitingList = remainingWaiting;
 
+    const seatNum = Number(supprimerSiege);
+
     courrantTraject.reservations.push({
-      seat: Number(supprimerSiege),
+      seat: seatNum,
       name: firstWaiting.name,
       phone: firstWaiting.phone,
     });
+
+    const seatStr = seatNum < 10 ? "0" + seatNum : seatNum;
+    message = `${firstWaiting.name} a obtenu le siège ${seatStr}`;
   }
 
   const routeIndex = trips.findIndex((trip) => trip.id === routId);
   trips[routeIndex] = courrantTraject;
+
   saveTrips(trips);
   disableFormsOnFullCabin(courrantTraject);
   renderSeatsDetails(courrantTraject);
   updateStats(courrantTraject);
   refleshTheList(courrantTraject);
+
+  showDeleteMessage(message);
 }
 
 function modifdyPlace() {
@@ -549,6 +558,17 @@ function showUpdateMessage() {
   const msg = document.getElementById("updateMessage");
   msg.classList.remove("hidden");
   setTimeout(() => msg.classList.add("hidden"), 3000);
+}
+
+function showDeleteMessage(message) {
+  const msg = document.getElementById("deleteMessage");
+  if (msg) {
+    if (message) {
+      msg.querySelector("p").innerText = message;
+    }
+    msg.classList.remove("hidden");
+    setTimeout(() => msg.classList.add("hidden"), 4000);
+  }
 }
 
 function findFirstEmptyPlace() {
