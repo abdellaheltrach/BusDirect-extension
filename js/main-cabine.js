@@ -31,7 +31,6 @@ if (!traject) {
       </a>
     </div>
   `;
-  console.log(pageContainer);
 } else {
   renderTripDetails(traject);
   refleshTheList(traject);
