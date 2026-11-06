@@ -239,6 +239,7 @@ function reservePlace() {
   refleshTheList(courrantTraject);
   renderSeatsDetails(courrantTraject);
   updateStats(courrantTraject);
+  disableFormsOnFullCabin(courrantTraject);
 
   //empty them
   document.getElementById("phoneNumber").value = "";
@@ -263,7 +264,7 @@ function deletePlace() {
   const routeIndex = trips.findIndex((trip) => trip.id === routId);
   trips[routeIndex] = courrantTraject;
   saveTrips(trips);
-
+  disableFormsOnFullCabin(courrantTraject);
   renderSeatsDetails(courrantTraject);
   updateStats(courrantTraject);
   refleshTheList(courrantTraject);
@@ -361,8 +362,6 @@ function modifdyPlace() {
       showUpdateErorrMessage("Ce numéro est déjà utilisé sur ce trajet.");
       return;
     }
-
-
 
     reservation.seat = newSelectedSeat;
     reservation.name = newName;
@@ -647,4 +646,32 @@ function handleSelectPassagerInModifying() {
   if (modifyPhoneNumber && selectedResevationIndex !== -1) {
     modifyPhoneNumber.value = courrantTraject.reservations[selectedResevationIndex].phone;
   }
+}
+export function disableFormsOnFullCabin(traject) {
+const capacity = traject.capacity;
+const reservationsLength = traject.reservations.length;
+
+const reserveForm = document.getElementById("reserveForm");
+if (reserveForm) { 
+  if (capacity === reservationsLength) {
+    reserveForm.setAttribute("aria-disabled", "true");
+    reserveForm.classList.add("pointer-events-none", "opacity-50");
+  } else {
+    reserveForm.setAttribute("aria-disabled", "false");
+    reserveForm.classList.remove("pointer-events-none", "opacity-50");
+  }
+}
+
+const newPlace = document.getElementById("newPlace");
+if (newPlace) {
+  if (capacity === reservationsLength) {
+    newPlace.setAttribute("aria-disabled", "true");
+    newPlace.disabled = true;
+    newPlace.classList.add("pointer-events-none", "opacity-50");
+  } else {
+    newPlace.setAttribute("aria-disabled", "false");
+    newPlace.disabled = false;
+    newPlace.classList.remove("pointer-events-none", "opacity-50");
+  }
+}
 }
